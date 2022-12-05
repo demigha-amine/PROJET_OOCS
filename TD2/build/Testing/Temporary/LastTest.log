@@ -1,0 +1,260 @@
+Start testing: Nov 10 10:50 CET
+----------------------------------------------------------
+1/2 Testing: UnitTest.MylibTestPrintTest
+1/2 Test: UnitTest.MylibTestPrintTest
+Command: "/home/chps/Bureau/TD2/build/Test.exe" "--gtest_filter=UnitTest.MylibTestPrintTest" "--gtest_also_run_disabled_tests"
+Directory: /home/chps/Bureau/TD2/build
+"UnitTest.MylibTestPrintTest" start time: Nov 10 10:50 CET
+Output:
+----------------------------------------------------------
+Running main() from /build/googletest-j5yxiC/googletest-1.10.0/googletest/src/gtest_main.cc
+Note: Google Test filter = UnitTest.MylibTestPrintTest
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from UnitTest
+[ RUN      ] UnitTest.MylibTestPrintTest
+*I-Internal   Example Alien :
+*I-Internal   Use of scalar builder (RefSemantic API) for Laplacian problem
+*I-Internal    => solving linear system Ax = b
+*I-Internal    * problem size = 100
+*I-Internal    
+*I-Internal   Start example...
+*I-Internal    
+*I-Internal   Create VectorDistribution(global=100)
+*I-Internal   Create VectorDistribution(global=100)
+*I-Internal   Create MatrixDistribution(rowglobal=100,colglobal=100)
+*I-Internal   build matrix with direct matrix builder
+*I-Internal   Udpate Timestamp 0x55bc3d899a90 (0 Observers) by TimestampMng 0x55bc3d692950
+*I-Internal   * xe = 1
+*I-Internal   Create VectorDistribution(global=100)
+*I-Internal   Create Empty VectorDistribution
+*I-Internal   Initializing SimpleCSRVector 0x55bc3d86f600
+*I-Internal   Udpate Timestamp 0x55bc3d86f600 (0 Observers) by TimestampMng 0x55bc3d6cb270
+*I-Internal   => Vector Distribution : 1d distributed, global size=100, local size=100, offset=0
+*I-Internal   * b = A * xe
+*I-Internal   Create VectorDistribution(global=100)
+*I-Internal   Converting Alien::SimpleCSRMatrix: 0x55bc3d899a90 to Hypre::Matrix 0x55bc3d89b1f0
+*I-Internal   Converting Alien::SimpleCSRVector: 0x55bc3d86f600 to Hypre::Vector 0x55bc3d86bc60
+*I-Internal   Vector range : [0:99]
+*I-Internal   Udpate Timestamp 0x55bc3d870b00 (0 Observers) by TimestampMng 0x55bc3d6d5330
+*I-Internal   Create VectorDistribution(global=100)
+*I-Internal   * x = A^-1 b
+*I-Internal   Udpate Timestamp 0x55bc3d870f80 (0 Observers) by TimestampMng 0x55bc3d89ad20
+on 1 solve = 0.00195519 s, iter = 2 and res = 1.59153e-15
+*I-Internal   * r = Ax - b
+*I-Internal   Create VectorDistribution(global=100)
+*I-Internal   Create VectorDistribution(global=100)
+*I-Internal   t = Ax
+*I-Internal   Udpate Timestamp 0x55bc3d870d30 (0 Observers) by TimestampMng 0x55bc3d8ab2e0
+*I-Internal   r = t
+*I-Internal   Udpate Timestamp 0x55bc3d871940 (0 Observers) by TimestampMng 0x55bc3d8a8880
+*I-Internal   r -= b
+*I-Internal   Udpate Timestamp 0x55bc3d871940 (0 Observers) by TimestampMng 0x55bc3d8a8880
+*I-Internal    => ||r|| = 2.22599024277275e-15
+*I-Internal   * r = || x - xe ||
+*I-Internal   r = x
+*I-Internal   Udpate Timestamp 0x55bc3d871940 (0 Observers) by TimestampMng 0x55bc3d8a8880
+*I-Internal   r -= xe
+*I-Internal   Udpate Timestamp 0x55bc3d871940 (0 Observers) by TimestampMng 0x55bc3d8a8880
+*I-Internal    => ||r|| = 2.22599024277275e-15
+*I-Internal    
+*I-Internal   ... example finished !!!
+*I-Internal   Example Alien :
+*I-Internal   Use of scalar builder (RefSemantic API) for Laplacian problem
+*I-Internal    => solving linear system Ax = b
+*I-Internal    * problem size = 100
+*I-Internal    
+*I-Internal   Start example...
+*I-Internal    
+*I-Internal   Create VectorDistribution(global=100)
+*I-Internal   Create VectorDistribution(global=100)
+*I-Internal   Create MatrixDistribution(rowglobal=100,colglobal=100)
+*I-Internal   offset: 0
+*I-Internal   build matrix with direct matrix builder
+*I-Internal   Udpate Timestamp 0x55bc3d89f8d0 (0 Observers) by TimestampMng 0x55bc3d692950
+*I-Internal   * xe = 1
+*I-Internal   Create VectorDistribution(global=100)
+*I-Internal   Create Empty VectorDistribution
+*I-Internal   Initializing SimpleCSRVector 0x55bc3d89cf10
+*I-Internal   Udpate Timestamp 0x55bc3d89cf10 (0 Observers) by TimestampMng 0x55bc3d6cb270
+*I-Internal   => Vector Distribution : 1d distributed, global size=100, local size=100, offset=0
+*I-Internal   * b = A * xe
+*I-Internal   Create VectorDistribution(global=100)
+*I-Internal   Create Empty VectorDistribution
+*I-Internal   Initializing SimpleCSRVector 0x55bc3d8a3a70
+*I-Internal   Udpate Timestamp 0x55bc3d8a3a70 (0 Observers) by TimestampMng 0x55bc3d6d5330
+*I-Internal   Create VectorDistribution(global=100)
+*I-Internal   * x = A^-1 b
+*I-Internal   Converting Alien::SimpleCSRMatrix: 0x55bc3d89f8d0 to Petsc::Matrix 0x55bc3d89b810
+*I-Internal   Matrix range : [0:99]x[0:99]
+*I-Internal   Converting Alien::SimpleCSRVector: 0x55bc3d8a3a70 to PETSc::Vector 0x55bc3d86bc60
+*I-Internal   Vector range : [0:99]
+*I-Internal   Udpate Timestamp 0x55bc3d870b00 (0 Observers) by TimestampMng 0x55bc3d89ad20
+*I-Internal   * r = Ax - b
+*I-Internal   Create VectorDistribution(global=100)
+*I-Internal   Create VectorDistribution(global=100)
+*I-Internal   t = Ax
+*I-Internal   Create Empty VectorDistribution
+*I-Internal   Initializing SimpleCSRVector 0x55bc3d86ddb0
+*I-Internal   Converting PETSc::Vector: 0x55bc3d870b00 to Alien::SimpleCSRVector 0x55bc3d86ddb0
+*I-Internal   Create Empty VectorDistribution
+*I-Internal   Initializing SimpleCSRVector 0x55bc3d86f770
+*I-Internal   Udpate Timestamp 0x55bc3d86f770 (0 Observers) by TimestampMng 0x55bc3d8cc610
+*I-Internal   r = t
+*I-Internal   Create Empty VectorDistribution
+*I-Internal   Initializing SimpleCSRVector 0x55bc3d86f4d0
+*I-Internal   Udpate Timestamp 0x55bc3d86f4d0 (0 Observers) by TimestampMng 0x55bc3d8cc450
+*I-Internal   r -= b
+*I-Internal   Udpate Timestamp 0x55bc3d86f4d0 (0 Observers) by TimestampMng 0x55bc3d8cc450
+*I-Internal    => ||r|| = 6.10480386035896e-11
+*I-Internal   * r = || x - xe ||
+*I-Internal   r = x
+*I-Internal   Udpate Timestamp 0x55bc3d86f4d0 (0 Observers) by TimestampMng 0x55bc3d8cc450
+*I-Internal   r -= xe
+*I-Internal   Udpate Timestamp 0x55bc3d86f4d0 (0 Observers) by TimestampMng 0x55bc3d8cc450
+*I-Internal    => ||r|| = 6.10480386035896e-11
+*I-Internal    
+*I-Internal   ... example finished !!!
+[       OK ] UnitTest.MylibTestPrintTest (363 ms)
+[----------] 1 test from UnitTest (363 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (363 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.40 sec
+----------------------------------------------------------
+Test Passed.
+"UnitTest.MylibTestPrintTest" end time: Nov 10 10:50 CET
+"UnitTest.MylibTestPrintTest" time elapsed: 00:00:00
+----------------------------------------------------------
+
+2/2 Testing: test
+2/2 Test: test
+Command: "/home/chps/Bureau/TD2/build/Test.exe"
+Directory: /home/chps/Bureau/TD2/build
+"test" start time: Nov 10 10:50 CET
+Output:
+----------------------------------------------------------
+Running main() from /build/googletest-j5yxiC/googletest-1.10.0/googletest/src/gtest_main.cc
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from UnitTest
+[ RUN      ] UnitTest.MylibTestPrintTest
+*I-Internal   Example Alien :
+*I-Internal   Use of scalar builder (RefSemantic API) for Laplacian problem
+*I-Internal    => solving linear system Ax = b
+*I-Internal    * problem size = 100
+*I-Internal    
+*I-Internal   Start example...
+*I-Internal    
+*I-Internal   Create VectorDistribution(global=100)
+*I-Internal   Create VectorDistribution(global=100)
+*I-Internal   Create MatrixDistribution(rowglobal=100,colglobal=100)
+*I-Internal   build matrix with direct matrix builder
+*I-Internal   Udpate Timestamp 0x55c31a575540 (0 Observers) by TimestampMng 0x55c31a36e7c0
+*I-Internal   * xe = 1
+*I-Internal   Create VectorDistribution(global=100)
+*I-Internal   Create Empty VectorDistribution
+*I-Internal   Initializing SimpleCSRVector 0x55c31a54b830
+*I-Internal   Udpate Timestamp 0x55c31a54b830 (0 Observers) by TimestampMng 0x55c31a3a74b0
+*I-Internal   => Vector Distribution : 1d distributed, global size=100, local size=100, offset=0
+*I-Internal   * b = A * xe
+*I-Internal   Create VectorDistribution(global=100)
+*I-Internal   Converting Alien::SimpleCSRMatrix: 0x55c31a575540 to Hypre::Matrix 0x55c31a577280
+*I-Internal   Converting Alien::SimpleCSRVector: 0x55c31a54b830 to Hypre::Vector 0x55c31a547e90
+*I-Internal   Vector range : [0:99]
+*I-Internal   Udpate Timestamp 0x55c31a54cb00 (0 Observers) by TimestampMng 0x55c31a3b11c0
+*I-Internal   Create VectorDistribution(global=100)
+*I-Internal   * x = A^-1 b
+*I-Internal   Udpate Timestamp 0x55c31a54cf80 (0 Observers) by TimestampMng 0x55c31a576db0
+on 1 solve = 0.001937 s, iter = 2 and res = 1.59153e-15
+*I-Internal   * r = Ax - b
+*I-Internal   Create VectorDistribution(global=100)
+*I-Internal   Create VectorDistribution(global=100)
+*I-Internal   t = Ax
+*I-Internal   Udpate Timestamp 0x55c31a54cd30 (0 Observers) by TimestampMng 0x55c31a5873b0
+*I-Internal   r = t
+*I-Internal   Udpate Timestamp 0x55c31a54d940 (0 Observers) by TimestampMng 0x55c31a581cf0
+*I-Internal   r -= b
+*I-Internal   Udpate Timestamp 0x55c31a54d940 (0 Observers) by TimestampMng 0x55c31a581cf0
+*I-Internal    => ||r|| = 2.22599024277275e-15
+*I-Internal   * r = || x - xe ||
+*I-Internal   r = x
+*I-Internal   Udpate Timestamp 0x55c31a54d940 (0 Observers) by TimestampMng 0x55c31a581cf0
+*I-Internal   r -= xe
+*I-Internal   Udpate Timestamp 0x55c31a54d940 (0 Observers) by TimestampMng 0x55c31a581cf0
+*I-Internal    => ||r|| = 2.22599024277275e-15
+*I-Internal    
+*I-Internal   ... example finished !!!
+*I-Internal   Example Alien :
+*I-Internal   Use of scalar builder (RefSemantic API) for Laplacian problem
+*I-Internal    => solving linear system Ax = b
+*I-Internal    * problem size = 100
+*I-Internal    
+*I-Internal   Start example...
+*I-Internal    
+*I-Internal   Create VectorDistribution(global=100)
+*I-Internal   Create VectorDistribution(global=100)
+*I-Internal   Create MatrixDistribution(rowglobal=100,colglobal=100)
+*I-Internal   offset: 0
+*I-Internal   build matrix with direct matrix builder
+*I-Internal   Udpate Timestamp 0x55c31a575540 (0 Observers) by TimestampMng 0x55c31a36e7c0
+*I-Internal   * xe = 1
+*I-Internal   Create VectorDistribution(global=100)
+*I-Internal   Create Empty VectorDistribution
+*I-Internal   Initializing SimpleCSRVector 0x55c31a394f00
+*I-Internal   Udpate Timestamp 0x55c31a394f00 (0 Observers) by TimestampMng 0x55c31a3a74b0
+*I-Internal   => Vector Distribution : 1d distributed, global size=100, local size=100, offset=0
+*I-Internal   * b = A * xe
+*I-Internal   Create VectorDistribution(global=100)
+*I-Internal   Create Empty VectorDistribution
+*I-Internal   Initializing SimpleCSRVector 0x55c31a57f910
+*I-Internal   Udpate Timestamp 0x55c31a57f910 (0 Observers) by TimestampMng 0x55c31a3b11c0
+*I-Internal   Create VectorDistribution(global=100)
+*I-Internal   * x = A^-1 b
+*I-Internal   Converting Alien::SimpleCSRMatrix: 0x55c31a575540 to Petsc::Matrix 0x55c31a5778a0
+*I-Internal   Matrix range : [0:99]x[0:99]
+*I-Internal   Converting Alien::SimpleCSRVector: 0x55c31a57f910 to PETSc::Vector 0x55c31a547e90
+*I-Internal   Vector range : [0:99]
+*I-Internal   Udpate Timestamp 0x55c31a54cb00 (0 Observers) by TimestampMng 0x55c31a576db0
+*I-Internal   * r = Ax - b
+*I-Internal   Create VectorDistribution(global=100)
+*I-Internal   Create VectorDistribution(global=100)
+*I-Internal   t = Ax
+*I-Internal   Create Empty VectorDistribution
+*I-Internal   Initializing SimpleCSRVector 0x55c31a549fe0
+*I-Internal   Converting PETSc::Vector: 0x55c31a54cb00 to Alien::SimpleCSRVector 0x55c31a549fe0
+*I-Internal   Create Empty VectorDistribution
+*I-Internal   Initializing SimpleCSRVector 0x55c31a54b9a0
+*I-Internal   Udpate Timestamp 0x55c31a54b9a0 (0 Observers) by TimestampMng 0x55c31a5a88c0
+*I-Internal   r = t
+*I-Internal   Create Empty VectorDistribution
+*I-Internal   Initializing SimpleCSRVector 0x55c31a54b700
+*I-Internal   Udpate Timestamp 0x55c31a54b700 (0 Observers) by TimestampMng 0x55c31a5a8700
+*I-Internal   r -= b
+*I-Internal   Udpate Timestamp 0x55c31a54b700 (0 Observers) by TimestampMng 0x55c31a5a8700
+*I-Internal    => ||r|| = 6.10480386035896e-11
+*I-Internal   * r = || x - xe ||
+*I-Internal   r = x
+*I-Internal   Udpate Timestamp 0x55c31a54b700 (0 Observers) by TimestampMng 0x55c31a5a8700
+*I-Internal   r -= xe
+*I-Internal   Udpate Timestamp 0x55c31a54b700 (0 Observers) by TimestampMng 0x55c31a5a8700
+*I-Internal    => ||r|| = 6.10480386035896e-11
+*I-Internal    
+*I-Internal   ... example finished !!!
+[       OK ] UnitTest.MylibTestPrintTest (345 ms)
+[----------] 1 test from UnitTest (345 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (345 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.38 sec
+----------------------------------------------------------
+Test Passed.
+"test" end time: Nov 10 10:50 CET
+"test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Nov 10 10:50 CET

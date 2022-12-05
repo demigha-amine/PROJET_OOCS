@@ -1,0 +1,38 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/chps/Bureau/TD2/AlienMock.h
+iostream
+-
+
+/home/chps/Bureau/TD2/HypreExample.h
+iostream
+-
+
+/home/chps/Bureau/TD2/MpiMock.h
+
+/home/chps/Bureau/TD2/PETScExample.cpp
+PETScExampleExample.h
+/home/chps/Bureau/TD2/PETScExampleExample.h
+AlienMock.h
+/home/chps/Bureau/TD2/AlienMock.h
+
+/home/chps/Bureau/TD2/PETScExampleExample.h
+iostream
+-
+
+/home/chps/Bureau/TD2/main.cpp
+iostream
+-
+PETScExampleExample.h
+/home/chps/Bureau/TD2/PETScExampleExample.h
+HypreExample.h
+/home/chps/Bureau/TD2/HypreExample.h
+MpiMock.h
+/home/chps/Bureau/TD2/MpiMock.h
+

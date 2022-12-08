@@ -1,10 +1,13 @@
 #include <iostream>
+#include "LocalLinearAlgebra.h"
 
 
 
 
 class PETScExample{
 public :
-int run();
+//int run();
+LocalLinearAlgebra::ResidualNorms run();
+
 
 };

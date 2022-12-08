@@ -1,11 +1,13 @@
 #include <iostream>
+#include "LocalLinearAlgebra.h"
+
 
 
 
 
 class HypreExample {
 public :
-int run();
-
+//int run();
+LocalLinearAlgebra::ResidualNorms run();
 
 };

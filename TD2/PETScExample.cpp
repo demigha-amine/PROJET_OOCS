@@ -1,14 +1,17 @@
 #include "PETScExampleExample.h"
+//#include "LocalLinearAlgebra.h"
 
-#include <alien/petsc/backend.h>
-#include <alien/petsc/options.h>
+//#include <alien/petsc/backend.h>
+//#include <alien/petsc/options.h>
 
-#include <arccore/message_passing_mpi/StandaloneMpiMessagePassingMng.h>
+//#include <arccore/message_passing_mpi/StandaloneMpiMessagePassingMng.h>
 
-#include <alien/kernels/simple_csr/algebra/SimpleCSRLinearAlgebra.h>
-#include <alien/ref/AlienRefSemantic.h>
+//#include <alien/kernels/simple_csr/algebra/SimpleCSRLinearAlgebra.h>
+//#include <alien/ref/AlienRefSemantic.h>
 
-int PETScExample::run()  {
+//int PETScExample::run()
+LocalLinearAlgebra::ResidualNorms PETScExample::run()
+{
 auto* pm = Arccore::MessagePassing::Mpi::StandaloneMpiMessagePassingMng::create(MPI_COMM_WORLD);
   auto* tm = Arccore::arccoreCreateDefaultTraceMng();
 
@@ -33,6 +36,9 @@ auto* pm = Arccore::MessagePassing::Mpi::StandaloneMpiMessagePassingMng::create(
   int lsize = dist.localRowSize();
   int gsize = dist.globalRowSize();
 
+  LocalLinearAlgebra::Matrix A_local(size, size,0); // dimensionnement et initialisation à 0 de votre matrice
+
+
   tm->info() << "offset: " << offset;
 
   tm->info() << "build matrix with direct matrix builder";
@@ -41,12 +47,21 @@ auto* pm = Arccore::MessagePassing::Mpi::StandaloneMpiMessagePassingMng::create(
     builder.reserve(3); // Réservation de 3 coefficients par ligne
     builder.allocate(); // Allocation de l'espace mémoire réservé
 
+
     for (int irow = offset; irow < offset + lsize; ++irow) {
       builder(irow, irow) = 2.;
+
+      A_local.add_value(irow, irow,2.);  //notre methode local
+
       if (irow - 1 >= 0)
         builder(irow, irow - 1) = -1.;
+
+        A_local.add_value(irow, irow - 1,-1.); //remplissage matrice local
+
       if (irow + 1 < gsize)
         builder(irow, irow + 1) = -1.;
+
+        A_local.add_value(irow, irow + 1,-1.); //remplissage matrice local
     }
   }
 
@@ -112,19 +127,50 @@ auto* pm = Arccore::MessagePassing::Mpi::StandaloneMpiMessagePassingMng::create(
   tm->info() << " ";
   tm->info() << "... example finished !!!";
 
+// notre methode : local ***********************************************************************************/
 
+//Avec Alien
+/*
+Alien::LocalVectorReader L1 (x); //instance du classe d'alien pour recuperer le contenu de x
+Alien::LocalVectorReader L2 (b); //instance du classe d'alien pour recuperer le contenu de b
+
+LocalLinearAlgebra::Vector x_local(L1.size()); //creation de x_local avec x.size
+LocalLinearAlgebra::Vector b_local(L2.size()); //creation de b_local avec b.size
+
+for(int u=0; u< L1.size(); u++)
+{
+  x_local[i] = L1[i]; //copier le contenu de x dans x_local
+}
+
+for(int u=0; u< L2.size(); u++)
+{
+  b_local[i] = L2[i]; //copier le contenu de b dans b_local
+}
+*/
+
+//Avec Alien.h
+LocalLinearAlgebra::Vector x_local(size,1); //creation de x_local avec x.size
+LocalLinearAlgebra::Vector b_local(size); //creation de b_local avec b.size 
+LocalLinearAlgebra::mult(A_local, x_local, b_local);
+LocalLinearAlgebra::Vector r_local(size); //creation de r_local
+
+
+  LocalLinearAlgebra::Vector tmp_local(size);
   // "t = A_local*x_local";
-LocalLinearAlgebra::Vector tmp_local(size);
-LocalLinearAlgebra::mult(A_local, x_local, tmp_local);
-// "r_local = t";
-LocalLinearAlgebra::copy(tmp_local, r_local);
-// "r_local -= b_local";
-LocalLinearAlgebra::axpy(-1., b_local, r_local);
-// norm_local = ||r_local||
-norm_local = LocalLinearAlgebra::norm2(r_local);
+  LocalLinearAlgebra::mult(A_local, x_local, tmp_local);
+  // "r_local = t";
+  LocalLinearAlgebra::copy(tmp_local, r_local);
+  // "r_local -= b_local";
+  LocalLinearAlgebra::axpy(-1., b_local, r_local);
+  // norm_local = ||r_local||
+  double norm_local = LocalLinearAlgebra::norm2(r_local);
+
+  //std::cout << "Norm_local = " << norm_local << std::endl;
+
+  LocalLinearAlgebra::ResidualNorms R{norm,norm_local};
 
 
-  return 0;
+  return R;
 
 }
 

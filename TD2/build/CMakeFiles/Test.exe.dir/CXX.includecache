@@ -6,15 +6,53 @@
 
 #IncludeRegexTransform: 
 
-/home/chps/Bureau/TD2/HypreExample.h
+/home/chps/Bureau/TD2/AlienMock.h
 iostream
 -
 
+/home/chps/Bureau/TD2/HypreExample.cpp
+HypreExample.h
+/home/chps/Bureau/TD2/HypreExample.h
+AlienMock.h
+/home/chps/Bureau/TD2/AlienMock.h
+alien/hypre/backend.h
+-
+arccore/message_passing_mpi/StandaloneMpiMessagePassingMng.h
+-
+alien/ref/AlienRefSemantic.h
+-
+
+/home/chps/Bureau/TD2/HypreExample.h
+iostream
+-
+LocalLinearAlgebra.h
+/home/chps/Bureau/TD2/LocalLinearAlgebra.h
+
+/home/chps/Bureau/TD2/LocalLinearAlgebra.cpp
+LocalLinearAlgebra.h
+/home/chps/Bureau/TD2/LocalLinearAlgebra.h
+math.h
+-
+
+/home/chps/Bureau/TD2/LocalLinearAlgebra.h
+iostream
+-
+vector
+-
+AlienMock.h
+/home/chps/Bureau/TD2/AlienMock.h
+
 /home/chps/Bureau/TD2/MpiMock.h
+
+/home/chps/Bureau/TD2/PETScExample.cpp
+PETScExampleExample.h
+/home/chps/Bureau/TD2/PETScExampleExample.h
 
 /home/chps/Bureau/TD2/PETScExampleExample.h
 iostream
 -
+LocalLinearAlgebra.h
+/home/chps/Bureau/TD2/LocalLinearAlgebra.h
 
 /home/chps/Bureau/TD2/Test.cpp
 gtest/gtest.h
@@ -25,4 +63,6 @@ HypreExample.h
 /home/chps/Bureau/TD2/HypreExample.h
 MpiMock.h
 /home/chps/Bureau/TD2/MpiMock.h
+math.h
+-
 

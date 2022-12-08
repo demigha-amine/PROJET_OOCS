@@ -1,7 +1,9 @@
 #include <iostream> // fichier système
 #include "PETScExampleExample.h"
 #include "HypreExample.h"
-#include <mpi.h>
+#include "MpiMock.h"
+
+//#include <mpi.h>
 
 
 
@@ -13,15 +15,19 @@
 int main(int argc, char** argv){
 
  MPI_Init(&argc, &argv);
-HypreExample HypreExample{};
-PETScExample PETScExample{};
+HypreExample Hypre{};
+PETScExample PETSc{};
 
-auto ret = HypreExample.run();
-auto ret2 = HypreExample.run();PETScExample.run();
+LocalLinearAlgebra::ResidualNorms R = Hypre.run();
+LocalLinearAlgebra::ResidualNorms P = PETSc.run();
+
+std::cout << "(norm_alien, norm_local) = (" << R.norm_alien << ", " << R.norm_local << ")" << std::endl;
+std::cout << "(norm_alien, norm_local) = (" << P.norm_alien << ", " << P.norm_local << ")" << std::endl;
+
 
  MPI_Finalize();
 
-  return ret,ret2;
+  return 0;
 
 
 }

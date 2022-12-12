@@ -109,12 +109,26 @@ CMakeFiles/Test.exe.dir/LocalLinearAlgebra.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Test.exe.dir/LocalLinearAlgebra.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/chps/Bureau/TD2/LocalLinearAlgebra.cpp -o CMakeFiles/Test.exe.dir/LocalLinearAlgebra.cpp.s
 
+CMakeFiles/Test.exe.dir/GenericExample.cpp.o: CMakeFiles/Test.exe.dir/flags.make
+CMakeFiles/Test.exe.dir/GenericExample.cpp.o: ../GenericExample.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/chps/Bureau/TD2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/Test.exe.dir/GenericExample.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Test.exe.dir/GenericExample.cpp.o -c /home/chps/Bureau/TD2/GenericExample.cpp
+
+CMakeFiles/Test.exe.dir/GenericExample.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Test.exe.dir/GenericExample.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/chps/Bureau/TD2/GenericExample.cpp > CMakeFiles/Test.exe.dir/GenericExample.cpp.i
+
+CMakeFiles/Test.exe.dir/GenericExample.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Test.exe.dir/GenericExample.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/chps/Bureau/TD2/GenericExample.cpp -o CMakeFiles/Test.exe.dir/GenericExample.cpp.s
+
 # Object files for target Test.exe
 Test_exe_OBJECTS = \
 "CMakeFiles/Test.exe.dir/Test.cpp.o" \
 "CMakeFiles/Test.exe.dir/HypreExample.cpp.o" \
 "CMakeFiles/Test.exe.dir/PETScExample.cpp.o" \
-"CMakeFiles/Test.exe.dir/LocalLinearAlgebra.cpp.o"
+"CMakeFiles/Test.exe.dir/LocalLinearAlgebra.cpp.o" \
+"CMakeFiles/Test.exe.dir/GenericExample.cpp.o"
 
 # External object files for target Test.exe
 Test_exe_EXTERNAL_OBJECTS =
@@ -123,11 +137,12 @@ Test.exe: CMakeFiles/Test.exe.dir/Test.cpp.o
 Test.exe: CMakeFiles/Test.exe.dir/HypreExample.cpp.o
 Test.exe: CMakeFiles/Test.exe.dir/PETScExample.cpp.o
 Test.exe: CMakeFiles/Test.exe.dir/LocalLinearAlgebra.cpp.o
+Test.exe: CMakeFiles/Test.exe.dir/GenericExample.cpp.o
 Test.exe: CMakeFiles/Test.exe.dir/build.make
 Test.exe: /usr/lib/x86_64-linux-gnu/libgtest_main.a
 Test.exe: /usr/lib/x86_64-linux-gnu/libgtest.a
 Test.exe: CMakeFiles/Test.exe.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/chps/Bureau/TD2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable Test.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/chps/Bureau/TD2/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable Test.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Test.exe.dir/link.txt --verbose=$(VERBOSE)
 	/usr/bin/cmake -D TEST_TARGET=Test.exe -D TEST_EXECUTABLE=/home/chps/Bureau/TD2/build/Test.exe -D TEST_EXECUTOR= -D TEST_WORKING_DIR=/home/chps/Bureau/TD2/build -D TEST_EXTRA_ARGS= -D TEST_PROPERTIES= -D TEST_PREFIX= -D TEST_SUFFIX= -D NO_PRETTY_TYPES=FALSE -D NO_PRETTY_VALUES=FALSE -D TEST_LIST=Test.exe_TESTS -D CTEST_FILE=/home/chps/Bureau/TD2/build/Test.exe[1]_tests.cmake -D TEST_DISCOVERY_TIMEOUT=5 -P /usr/share/cmake-3.16/Modules/GoogleTestAddTests.cmake
 

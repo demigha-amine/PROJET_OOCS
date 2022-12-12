@@ -12,7 +12,7 @@
 //int PETScExample::run()
 LocalLinearAlgebra::ResidualNorms PETScExample::run()
 {
-auto* pm = Arccore::MessagePassing::Mpi::StandaloneMpiMessagePassingMng::create(MPI_COMM_WORLD);
+  auto* pm = Arccore::MessagePassing::Mpi::StandaloneMpiMessagePassingMng::create(MPI_COMM_WORLD);
   auto* tm = Arccore::arccoreCreateDefaultTraceMng();
 
   Alien::setTraceMng(tm);

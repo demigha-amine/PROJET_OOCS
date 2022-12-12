@@ -10,6 +10,16 @@
 iostream
 -
 
+/home/chps/Bureau/TD2/GenericExample.cpp
+GenericExample.h
+/home/chps/Bureau/TD2/GenericExample.h
+
+/home/chps/Bureau/TD2/GenericExample.h
+AlienMock.h
+/home/chps/Bureau/TD2/AlienMock.h
+LocalLinearAlgebra.h
+/home/chps/Bureau/TD2/LocalLinearAlgebra.h
+
 /home/chps/Bureau/TD2/HypreExample.cpp
 HypreExample.h
 /home/chps/Bureau/TD2/HypreExample.h
@@ -32,6 +42,8 @@ LocalLinearAlgebra.h
 LocalLinearAlgebra.h
 /home/chps/Bureau/TD2/LocalLinearAlgebra.h
 math.h
+-
+algorithm
 -
 
 /home/chps/Bureau/TD2/LocalLinearAlgebra.h

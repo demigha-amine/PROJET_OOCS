@@ -147,6 +147,36 @@ Main.exe/fast:
 	$(MAKE) -f CMakeFiles/Main.exe.dir/build.make CMakeFiles/Main.exe.dir/build
 .PHONY : Main.exe/fast
 
+GenericExample.o: GenericExample.cpp.o
+
+.PHONY : GenericExample.o
+
+# target to build an object file
+GenericExample.cpp.o:
+	$(MAKE) -f CMakeFiles/Test.exe.dir/build.make CMakeFiles/Test.exe.dir/GenericExample.cpp.o
+	$(MAKE) -f CMakeFiles/Main.exe.dir/build.make CMakeFiles/Main.exe.dir/GenericExample.cpp.o
+.PHONY : GenericExample.cpp.o
+
+GenericExample.i: GenericExample.cpp.i
+
+.PHONY : GenericExample.i
+
+# target to preprocess a source file
+GenericExample.cpp.i:
+	$(MAKE) -f CMakeFiles/Test.exe.dir/build.make CMakeFiles/Test.exe.dir/GenericExample.cpp.i
+	$(MAKE) -f CMakeFiles/Main.exe.dir/build.make CMakeFiles/Main.exe.dir/GenericExample.cpp.i
+.PHONY : GenericExample.cpp.i
+
+GenericExample.s: GenericExample.cpp.s
+
+.PHONY : GenericExample.s
+
+# target to generate assembly for a file
+GenericExample.cpp.s:
+	$(MAKE) -f CMakeFiles/Test.exe.dir/build.make CMakeFiles/Test.exe.dir/GenericExample.cpp.s
+	$(MAKE) -f CMakeFiles/Main.exe.dir/build.make CMakeFiles/Main.exe.dir/GenericExample.cpp.s
+.PHONY : GenericExample.cpp.s
+
 HypreExample.o: HypreExample.cpp.o
 
 .PHONY : HypreExample.o
@@ -302,6 +332,9 @@ help:
 	@echo "... test"
 	@echo "... Test.exe"
 	@echo "... Main.exe"
+	@echo "... GenericExample.o"
+	@echo "... GenericExample.i"
+	@echo "... GenericExample.s"
 	@echo "... HypreExample.o"
 	@echo "... HypreExample.i"
 	@echo "... HypreExample.s"

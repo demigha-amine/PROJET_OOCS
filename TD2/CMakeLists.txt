@@ -8,13 +8,13 @@ set(CMAKE_CXX_STANDARD 17)
 
 # add the executable
 
-add_executable(Main.exe main.cpp HypreExample.cpp HypreExample.h PETScExample.cpp PETScExampleExample.h LocalLinearAlgebra.cpp LocalLinearAlgebra.h)
-add_executable(Test.exe Test.cpp HypreExample.cpp HypreExample.h PETScExample.cpp PETScExampleExample.h LocalLinearAlgebra.cpp LocalLinearAlgebra.h)
+add_executable(Main.exe main.cpp HypreExample.cpp HypreExample.h PETScExample.cpp PETScExampleExample.h LocalLinearAlgebra.cpp LocalLinearAlgebra.h GenericExample.cpp GenericExample.h)
+add_executable(Test.exe Test.cpp HypreExample.cpp HypreExample.h PETScExample.cpp PETScExampleExample.h LocalLinearAlgebra.cpp LocalLinearAlgebra.h GenericExample.cpp GenericExample.h)
 
+find_package(GTest REQUIRED)
 target_link_libraries(Test.exe GTest::GTest GTest::Main)
 enable_testing()
 
-find_package(GTest REQUIRED)
 #find_package(Alien REQUIRED)
 #find_package(BLAS REQUIRED)
 

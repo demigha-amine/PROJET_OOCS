@@ -1,4 +1,5 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/Test.exe.dir/GenericExample.cpp.o"
   "CMakeFiles/Test.exe.dir/HypreExample.cpp.o"
   "CMakeFiles/Test.exe.dir/LocalLinearAlgebra.cpp.o"
   "CMakeFiles/Test.exe.dir/PETScExample.cpp.o"

@@ -21,8 +21,12 @@ PETScExample PETSc{};
 LocalLinearAlgebra::ResidualNorms R = Hypre.run();
 LocalLinearAlgebra::ResidualNorms P = PETSc.run();
 
+ //affichage
+std::cout << "***************************************************************************" << std::endl;
 std::cout << "(norm_alien, norm_local) = (" << R.norm_alien << ", " << R.norm_local << ")" << std::endl;
 std::cout << "(norm_alien, norm_local) = (" << P.norm_alien << ", " << P.norm_local << ")" << std::endl;
+std::cout << "***************************************************************************" << std::endl;
+
 
 
  MPI_Finalize();

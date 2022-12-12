@@ -1,10 +1,10 @@
-Start testing: Dec 08 15:19 CET
+Start testing: Dec 12 16:56 CET
 ----------------------------------------------------------
 1/2 Testing: UnitTest.MylibTestPrintTest
 1/2 Test: UnitTest.MylibTestPrintTest
 Command: "/home/chps/Bureau/TD2/build/Test.exe" "--gtest_filter=UnitTest.MylibTestPrintTest" "--gtest_also_run_disabled_tests"
 Directory: /home/chps/Bureau/TD2/build
-"UnitTest.MylibTestPrintTest" start time: Dec 08 15:19 CET
+"UnitTest.MylibTestPrintTest" start time: Dec 12 16:56 CET
 Output:
 ----------------------------------------------------------
 Running main() from /build/googletest-j5yxiC/googletest-1.10.0/googletest/src/gtest_main.cc
@@ -36,7 +36,6 @@ r -= xe
  => ||r|| = 
 0 
 ... example finished !!!
-Norm_local = 0
 Example Alien :
 Use of scalar builder (RefSemantic API) for Laplacian problem
  => solving linear system Ax = b
@@ -61,7 +60,6 @@ r -= xe
  => ||r|| = 
 0 
 ... example finished !!!
-Norm_local = 0
 [       OK ] UnitTest.MylibTestPrintTest (1 ms)
 [----------] 1 test from UnitTest (1 ms total)
 
@@ -72,7 +70,7 @@ Norm_local = 0
 Test time =   0.00 sec
 ----------------------------------------------------------
 Test Passed.
-"UnitTest.MylibTestPrintTest" end time: Dec 08 15:19 CET
+"UnitTest.MylibTestPrintTest" end time: Dec 12 16:56 CET
 "UnitTest.MylibTestPrintTest" time elapsed: 00:00:00
 ----------------------------------------------------------
 
@@ -80,7 +78,7 @@ Test Passed.
 2/2 Test: test
 Command: "/home/chps/Bureau/TD2/build/Test.exe"
 Directory: /home/chps/Bureau/TD2/build
-"test" start time: Dec 08 15:19 CET
+"test" start time: Dec 12 16:56 CET
 Output:
 ----------------------------------------------------------
 Running main() from /build/googletest-j5yxiC/googletest-1.10.0/googletest/src/gtest_main.cc
@@ -111,7 +109,6 @@ r -= xe
  => ||r|| = 
 0 
 ... example finished !!!
-Norm_local = 0
 Example Alien :
 Use of scalar builder (RefSemantic API) for Laplacian problem
  => solving linear system Ax = b
@@ -136,19 +133,18 @@ r -= xe
  => ||r|| = 
 0 
 ... example finished !!!
-Norm_local = 0
 [       OK ] UnitTest.MylibTestPrintTest (1 ms)
-[----------] 1 test from UnitTest (2 ms total)
+[----------] 1 test from UnitTest (1 ms total)
 
 [----------] Global test environment tear-down
-[==========] 1 test from 1 test suite ran. (2 ms total)
+[==========] 1 test from 1 test suite ran. (1 ms total)
 [  PASSED  ] 1 test.
 <end of output>
 Test time =   0.00 sec
 ----------------------------------------------------------
 Test Passed.
-"test" end time: Dec 08 15:19 CET
+"test" end time: Dec 12 16:56 CET
 "test" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-End testing: Dec 08 15:19 CET
+End testing: Dec 12 16:56 CET

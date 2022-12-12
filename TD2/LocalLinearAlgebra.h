@@ -16,7 +16,7 @@ public :
 int i,j,k; //i: nbr ligne; j: nbr column; k: val d'init
 
 //costructeur
-Matrix(int a,int b,int c) : i(a), j(b), v(a*b,c){} //initialisation du vecteur de la matrice (n*n, val)
+Matrix(int a,int b,int c) : i(a), j(b), k(c), v(a*b,c){} //initialisation du vecteur de la matrice (n*n, val)
 void add_value(int a,int b,double c); //fonction pour remplissage 
 
 Vector v; //tableau du matrice

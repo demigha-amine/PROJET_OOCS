@@ -1,3 +1,3 @@
-UnitTest.MylibTestPrintTest 16 0.000291629
-test 16 0.000238559
+UnitTest.MylibTestPrintTest 18 0.000176896
+test 18 0.000161874
 ---

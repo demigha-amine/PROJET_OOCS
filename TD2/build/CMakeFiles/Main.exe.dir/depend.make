@@ -21,6 +21,7 @@ CMakeFiles/Main.exe.dir/PETScExample.cpp.o: ../PETScExample.cpp
 CMakeFiles/Main.exe.dir/PETScExample.cpp.o: ../PETScExampleExample.h
 
 CMakeFiles/Main.exe.dir/main.cpp.o: ../AlienMock.h
+CMakeFiles/Main.exe.dir/main.cpp.o: ../GenericExample.h
 CMakeFiles/Main.exe.dir/main.cpp.o: ../HypreExample.h
 CMakeFiles/Main.exe.dir/main.cpp.o: ../LocalLinearAlgebra.h
 CMakeFiles/Main.exe.dir/main.cpp.o: ../MpiMock.h

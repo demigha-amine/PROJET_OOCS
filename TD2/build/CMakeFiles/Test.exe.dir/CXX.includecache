@@ -19,6 +19,8 @@ AlienMock.h
 /home/chps/Bureau/TD2/AlienMock.h
 LocalLinearAlgebra.h
 /home/chps/Bureau/TD2/LocalLinearAlgebra.h
+memory
+-
 
 /home/chps/Bureau/TD2/HypreExample.cpp
 HypreExample.h
@@ -44,6 +46,8 @@ LocalLinearAlgebra.h
 math.h
 -
 algorithm
+-
+utility
 -
 
 /home/chps/Bureau/TD2/LocalLinearAlgebra.h

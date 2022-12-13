@@ -14,6 +14,8 @@
 
 
 //int HypreExample::run()
+//Avec std::paire
+//std::pair<double,double> HypreExample::run()
 LocalLinearAlgebra::ResidualNorms HypreExample::run()
 {
   auto* pm = Arccore::MessagePassing::Mpi::StandaloneMpiMessagePassingMng::create(MPI_COMM_WORLD);
@@ -169,6 +171,10 @@ double norm_local = LocalLinearAlgebra::norm2(r_local);
 //std::cout << "Norm_local = " << norm_local << std::endl;
 
 LocalLinearAlgebra::ResidualNorms R{norm,norm_local};
+
+//Avec std::paire
+//std::pair<double,double> R = std::make_pair(norm,norm_local);
+
 
 
 

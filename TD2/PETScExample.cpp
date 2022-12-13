@@ -10,6 +10,8 @@
 //#include <alien/ref/AlienRefSemantic.h>
 
 //int PETScExample::run()
+//Avec std::paire
+//std::pair<double,double> PETScExample::run()
 LocalLinearAlgebra::ResidualNorms PETScExample::run()
 {
   auto* pm = Arccore::MessagePassing::Mpi::StandaloneMpiMessagePassingMng::create(MPI_COMM_WORLD);
@@ -168,6 +170,10 @@ LocalLinearAlgebra::Vector r_local(size); //creation de r_local
   //std::cout << "Norm_local = " << norm_local << std::endl;
 
   LocalLinearAlgebra::ResidualNorms R{norm,norm_local};
+
+  //Avec std::paire
+  //std::pair<double,double> R = std::make_pair(norm,norm_local);
+
 
 
   return R;

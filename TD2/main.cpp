@@ -1,6 +1,7 @@
 #include <iostream> // fichier système
 #include "PETScExampleExample.h"
 #include "HypreExample.h"
+#include "GenericExample.h"
 #include "MpiMock.h"
 
 //#include <mpi.h>
@@ -27,11 +28,32 @@ std::cout << "(norm_alien, norm_local) = (" << R.norm_alien << ", " << R.norm_lo
 std::cout << "(norm_alien, norm_local) = (" << P.norm_alien << ", " << P.norm_local << ")" << std::endl;
 std::cout << "***************************************************************************" << std::endl;
 
+/*
+//Avec std::paire
+std::pair<double,double> R = Hypre.run();
+std::pair<double,double> P = PETSc.run();
+ //affichage
+std::cout << "***************************************************************************" << std::endl;
+std::cout << "(norm_alien, norm_local) = (" << R.first << ", " << R.second << ")" << std::endl;
+std::cout << "(norm_alien, norm_local) = (" << P.first << ", " << P.second << ")" << std::endl;
+std::cout << "***************************************************************************" << std::endl;
+*/
 
+GenericExample generic_example{};
+LocalLinearAlgebra::ResidualNorms A = generic_example.run(GenericExample::SolverType::Hypre); // hypre call
+LocalLinearAlgebra::ResidualNorms B = generic_example.run(GenericExample::SolverType::PETSc); // PETSc call
+
+//affichage
+std::cout << "***************************************************************************" << std::endl;
+std::cout << "(norm_alien, norm_local) = (" << A.norm_alien << ", " << A.norm_local << ")" << std::endl;
+std::cout << "(norm_alien, norm_local) = (" << B.norm_alien << ", " << B.norm_local << ")" << std::endl;
+std::cout << "***************************************************************************" << std::endl;
+
+generic_example.info<HypreAPI>();
+generic_example.info<PETScAPI>();
 
  MPI_Finalize();
 
-  return 0;
-
+ return 0;
 
 }

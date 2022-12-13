@@ -1,6 +1,7 @@
 #include "LocalLinearAlgebra.h"
 #include <math.h>
 #include <algorithm>
+#include <utility> //std::paire
 
 // "t = A_local * x_local"
 void LocalLinearAlgebra::mult(Matrix const& m, Vector const& x, Vector& t)

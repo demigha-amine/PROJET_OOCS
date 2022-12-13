@@ -1,5 +1,49 @@
 #include "GenericExample.h"
 
+auto SolverFabric::create(GenericExample::SolverType s)
+{
+  switch (s)
+  {
+    case SolverType::Hypre :      
+        std::unique_ptr<UniqueAPI> ptr = std::make_unique<UniqueAPI>HypreAPI();
+    break;
+    case SolverType::PETSc :
+        std::unique_ptr<UniqueAPI> ptr = std::make_unique<UniqueAPI>PETScAPI();
+    break;
+  }
+
+}
+
+auto HypreAPI::createAlgebra() override 
+{
+  std::unique_ptr<Alien::ILinearAlgebra> ptr = std::make_unique<Alien::ILinearAlgebra> GenericExample::SolverType::Hypre();
+}
+auto HypreAPI::createSolver() override 
+{
+  std::unique_ptr<Alien::ILinearSolver> ptr = std::make_unique<Alien::ILinearSolver> GenericExample::SolverType::Hypre();
+}
+
+auto PETScAPI::createAlgebra() override 
+{
+  std::unique_ptr<Alien::ILinearAlgebra> ptr = std::make_unique<Alien::ILinearAlgebra> GenericExample::SolverType::PETSc();
+}
+auto PETScAPI::createSolver() override 
+{
+  std::unique_ptr<Alien::ILinearAlgebra> ptr = std::make_unique<Alien::ILinearAlgebra> GenericExample::SolverType::PETS();
+}
+
+void GenericExample::info(T& a)
+{
+  a.info();
+}
+void HypreAPI::info()
+{
+  std::cout << "le nom de la bibliotheque utilisee est = Hypre" << std::endl;
+}
+void PETScAPI::info()
+{
+  std::cout << "le nom de la bibliotheque utilisee est = PETSc" << std::endl;
+}
 
 LocalLinearAlgebra::ResidualNorms GenericExample::run(SolverType s)
 {
@@ -12,7 +56,7 @@ LocalLinearAlgebra::ResidualNorms GenericExample::run(SolverType s)
   switch (s)
   {
     case SolverType::Hypre :
-        
+        Alien::Hypre::LinearAlgebra algebra;
         solver = Alien::Hypre::LinearSolver();
     break;
     case SolverType::PETSc :

@@ -1,8 +1,9 @@
+if [ -d "./build" ];then 
+   rm -r -d build
+fi
+mkdir build
 cd build
-rm CMakeCache.txt
 cmake ..
-#Avec Alien
-#cmake .. -DCMAKE_PREFIX_PATH=/usr/local/lib
 make
 ctest
 ./Main.exe

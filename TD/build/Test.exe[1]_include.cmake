@@ -1,5 +1,5 @@
-if(EXISTS "/home/chps/Bureau/TD/build/Test.exe[1]_tests.cmake")
-  include("/home/chps/Bureau/TD/build/Test.exe[1]_tests.cmake")
+if(EXISTS "/home/chps/Bureau/poo/TD/build/Test.exe[1]_tests.cmake")
+  include("/home/chps/Bureau/poo/TD/build/Test.exe[1]_tests.cmake")
 else()
   add_test(Test.exe_NOT_BUILT Test.exe_NOT_BUILT)
 endif()

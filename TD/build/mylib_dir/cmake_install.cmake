@@ -1,4 +1,4 @@
-# Install script for directory: /home/chps/Bureau/TD/mylib_dir
+# Install script for directory: /home/chps/Bureau/poo/TD/mylib_dir
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

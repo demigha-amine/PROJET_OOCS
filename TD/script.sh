@@ -1,5 +1,8 @@
+if [ -d "./build" ];then 
+   rm -r -d build
+fi
+mkdir build
 cd build
-rm CMakeCache.txt
 cmake ..
 make
 ctest

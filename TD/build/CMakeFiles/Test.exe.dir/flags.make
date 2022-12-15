@@ -6,5 +6,5 @@ CXX_FLAGS =   -std=gnu++17
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/chps/Bureau/TD/mylib_dir 
+CXX_INCLUDES = -I/home/chps/Bureau/poo/TD/mylib_dir 
 

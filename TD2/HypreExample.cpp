@@ -1,5 +1,5 @@
-#include "HypreExample.h"
-#include "AlienMock.h"
+#include "headers/HypreExample.h"
+#include "headers/AlienMock.h"
 //#include "LocalLinearAlgebra.h"
 /*
 #include <alien/hypre/backend.h>

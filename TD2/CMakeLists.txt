@@ -6,17 +6,36 @@ project(Tutorial)
 # enable modern C++
 set(CMAKE_CXX_STANDARD 17)
 
+# Bonus TD1
+set(CMAKE_CXX_FLAGS)
+
+# Installation bibliotheque dans CMake)
+# set(CMAKE_LIBRARY_PATH "/home/chps/Bureau/TD/mylib_dir/")
+# find_library(Names MyClass)
+# target_link_libraries(Main.exe MyClass)
+
+# l'Ajoute du sous repertoire
+include_directories(${CMAKE_SOURCE_DIR}/headers)
+
+
+
 # add the executable
 
-add_executable(Main.exe main.cpp HypreExample.cpp HypreExample.h PETScExample.cpp PETScExampleExample.h LocalLinearAlgebra.cpp LocalLinearAlgebra.h GenericExample.cpp GenericExample.h)
-add_executable(Test.exe Test.cpp HypreExample.cpp HypreExample.h PETScExample.cpp PETScExampleExample.h LocalLinearAlgebra.cpp LocalLinearAlgebra.h GenericExample.cpp GenericExample.h)
+add_executable(Main.exe main.cpp HypreExample.cpp PETScExample.cpp LocalLinearAlgebra.cpp GenericExample.cpp)
+add_executable(Test.exe Test.cpp HypreExample.cpp PETScExample.cpp LocalLinearAlgebra.cpp GenericExample.cpp)
+
 
 find_package(GTest REQUIRED)
-target_link_libraries(Test.exe GTest::GTest GTest::Main)
+find_package(Threads)
+find_package(TBB)
+
+target_link_libraries(Test.exe GTest::GTest GTest::Main Threads::Threads TBB::tbb)
 enable_testing()
 
+#Avec Alien
 #find_package(Alien REQUIRED)
 #find_package(BLAS REQUIRED)
+
 
 add_test(test Test.exe)
 #target_link_libraries(Test.exe Alien::alien_semantic_ref Alien::alien_semantic_move Alien::hypre_wrapper Alien::petsc_wrapper BLAS)

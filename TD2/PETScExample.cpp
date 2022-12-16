@@ -1,4 +1,4 @@
-#include "PETScExampleExample.h"
+#include "headers/PETScExampleExample.h"
 //#include "LocalLinearAlgebra.h"
 
 //#include <alien/petsc/backend.h>
@@ -10,7 +10,7 @@
 //#include <alien/ref/AlienRefSemantic.h>
 
 //int PETScExample::run()
-//Avec std::paire
+//***Avec std::paire***
 //std::pair<double,double> PETScExample::run()
 LocalLinearAlgebra::ResidualNorms PETScExample::run()
 {

@@ -1,7 +1,9 @@
-#include "LocalLinearAlgebra.h"
+#include "headers/LocalLinearAlgebra.h"
 #include <math.h>
 #include <algorithm>
 #include <utility> //std::paire
+//#include <execution> //std::execution
+
 
 // "t = A_local * x_local"
 void LocalLinearAlgebra::mult(Matrix const& m, Vector const& x, Vector& t)
@@ -42,6 +44,14 @@ void LocalLinearAlgebra::copy(Vector const& a, Vector& b)
 
   // Avec STL
   //std::copy(std::begin(a), std::end(a), std::begin(b));
+
+  
+  // En sequentielle
+  //std::copy(std::execution::seq,std::begin(a), std::end(a), std::begin(b));
+
+  // En parallele
+  //std::copy(std::execution::par,std::begin(a), std::end(a), std::begin(b));
+
 }
 
 // "r_local -= b_local";

@@ -1,26 +1,58 @@
-#include "GenericExample.h"
+#include "headers/GenericExample.h"
+#include <ctime>
+#include <chrono>
+
+class Timer{
+public :
+
+    std::chrono::time_point<std::chrono::system_clock> debut;
+    std::chrono::time_point<std::chrono::system_clock> fin;
+
+    void start () {fin = std::chrono::system_clock::now();}
+    void stop () {fin = std::chrono::system_clock::now();}
+    void print () { std::cout << "Timer = " << fin - debut << std::endl;}
+
+};
 
 auto SolverFabric::create(GenericExample::SolverType s)
 {
+  std::unique_ptr<UniqueAPI> ptr;
   switch (s)
   {
-    case SolverType::Hypre :      
-        std::unique_ptr<UniqueAPI> ptr = std::make_unique<UniqueAPI>HypreAPI();
+    case GenericExample::SolverType::Hypre :      
+        ptr = std::make_unique<HypreAPI>();
     break;
-    case SolverType::PETSc :
-        std::unique_ptr<UniqueAPI> ptr = std::make_unique<UniqueAPI>PETScAPI();
+
+    case GenericExample::SolverType::PETSc :
+        ptr = std::make_unique<PETScAPI>();
     break;
+
+  return ptr;
   }
-
 }
 
-auto HypreAPI::createAlgebra() override 
+template <typename U>
+std::unique_ptr<U> HypreAPI::createAlgebra()
 {
-  std::unique_ptr<Alien::ILinearAlgebra> ptr = std::make_unique<Alien::ILinearAlgebra> GenericExample::SolverType::Hypre();
+  return std::make_unique<Alien::Hypre::LinearAlgebra> ();
 }
-auto HypreAPI::createSolver() override 
+
+template <typename U>
+std::unique_ptr<U> createSolver()
 {
-  std::unique_ptr<Alien::ILinearSolver> ptr = std::make_unique<Alien::ILinearSolver> GenericExample::SolverType::Hypre();
+  return std::make_unique<Alien::Hypre::LinearSolver> ();
+}
+
+template <typename U>
+std::unique_ptr<U> createAlgebra()
+{
+  return std::make_unique<Alien::Hypre::LinearAlgebra> ();
+}
+
+template <typename U>
+std::unique_ptr<U> createAlgebra()
+{
+  return std::make_unique<Alien::Hypre::LinearAlgebra> ();
 }
 
 auto PETScAPI::createAlgebra() override 

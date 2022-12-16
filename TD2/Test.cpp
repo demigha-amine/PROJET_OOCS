@@ -1,7 +1,9 @@
 #include "gtest/gtest.h"
-#include "PETScExampleExample.h"
-#include "HypreExample.h"
-#include "MpiMock.h"
+#include "headers/PETScExampleExample.h"
+#include "headers/HypreExample.h"
+#include "headers/MpiMock.h"
+#include "headers/GenericExample.h"
+#include "headers/LocalLinearAlgebra.h"
 #include <math.h>
 
 //#include <mpi.h>

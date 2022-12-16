@@ -1,150 +1,35 @@
-Start testing: Dec 13 13:20 CET
+Start testing: Dec 16 12:57 CET
 ----------------------------------------------------------
-1/2 Testing: UnitTest.MylibTestPrintTest
-1/2 Test: UnitTest.MylibTestPrintTest
-Command: "/home/chps/Bureau/TD2/build/Test.exe" "--gtest_filter=UnitTest.MylibTestPrintTest" "--gtest_also_run_disabled_tests"
+Unable to find executable: Test.exe_NOT_BUILT
+1/2 Testing: Test.exe_NOT_BUILT
+1/2 Test: Test.exe_NOT_BUILT
+Command: ""
 Directory: /home/chps/Bureau/TD2/build
-"UnitTest.MylibTestPrintTest" start time: Dec 13 13:20 CET
+"Test.exe_NOT_BUILT" start time: 
 Output:
 ----------------------------------------------------------
-Running main() from /build/googletest-j5yxiC/googletest-1.10.0/googletest/src/gtest_main.cc
-Note: Google Test filter = UnitTest.MylibTestPrintTest
-[==========] Running 1 test from 1 test suite.
-[----------] Global test environment set-up.
-[----------] 1 test from UnitTest
-[ RUN      ] UnitTest.MylibTestPrintTest
-Example Alien :
-Use of scalar builder (RefSemantic API) for Laplacian problem
- => solving linear system Ax = b
- * problem size = 
-100 
-Start example...
- 
-build matrix with direct matrix builder
-* xe = 1
-=> Vector Distribution : 
-0* b = A * xe
-* x = A^-1 b
-* r = Ax - b
-t = Ax
-r = t
-r -= b
- => ||r|| = 
-0* r = || x - xe ||
-r = x
-r -= xe
- => ||r|| = 
-0 
-... example finished !!!
-Example Alien :
-Use of scalar builder (RefSemantic API) for Laplacian problem
- => solving linear system Ax = b
- * problem size = 
-100 
-Start example...
- 
-offset: 
-0build matrix with direct matrix builder
-* xe = 1
-=> Vector Distribution : 
-0* b = A * xe
-* x = A^-1 b
-* r = Ax - b
-t = Ax
-r = t
-r -= b
- => ||r|| = 
-0* r = || x - xe ||
-r = x
-r -= xe
- => ||r|| = 
-0 
-... example finished !!!
-[       OK ] UnitTest.MylibTestPrintTest (1 ms)
-[----------] 1 test from UnitTest (1 ms total)
-
-[----------] Global test environment tear-down
-[==========] 1 test from 1 test suite ran. (1 ms total)
-[  PASSED  ] 1 test.
 <end of output>
 Test time =   0.00 sec
 ----------------------------------------------------------
 Test Passed.
-"UnitTest.MylibTestPrintTest" end time: Dec 13 13:20 CET
-"UnitTest.MylibTestPrintTest" time elapsed: 00:00:00
+"Test.exe_NOT_BUILT" end time: Dec 16 12:57 CET
+"Test.exe_NOT_BUILT" time elapsed: 00:00:00
 ----------------------------------------------------------
 
+Unable to find executable: Test.exe
 2/2 Testing: test
 2/2 Test: test
-Command: "/home/chps/Bureau/TD2/build/Test.exe"
+Command: ""
 Directory: /home/chps/Bureau/TD2/build
-"test" start time: Dec 13 13:20 CET
+"test" start time: 
 Output:
 ----------------------------------------------------------
-Running main() from /build/googletest-j5yxiC/googletest-1.10.0/googletest/src/gtest_main.cc
-[==========] Running 1 test from 1 test suite.
-[----------] Global test environment set-up.
-[----------] 1 test from UnitTest
-[ RUN      ] UnitTest.MylibTestPrintTest
-Example Alien :
-Use of scalar builder (RefSemantic API) for Laplacian problem
- => solving linear system Ax = b
- * problem size = 
-100 
-Start example...
- 
-build matrix with direct matrix builder
-* xe = 1
-=> Vector Distribution : 
-0* b = A * xe
-* x = A^-1 b
-* r = Ax - b
-t = Ax
-r = t
-r -= b
- => ||r|| = 
-0* r = || x - xe ||
-r = x
-r -= xe
- => ||r|| = 
-0 
-... example finished !!!
-Example Alien :
-Use of scalar builder (RefSemantic API) for Laplacian problem
- => solving linear system Ax = b
- * problem size = 
-100 
-Start example...
- 
-offset: 
-0build matrix with direct matrix builder
-* xe = 1
-=> Vector Distribution : 
-0* b = A * xe
-* x = A^-1 b
-* r = Ax - b
-t = Ax
-r = t
-r -= b
- => ||r|| = 
-0* r = || x - xe ||
-r = x
-r -= xe
- => ||r|| = 
-0 
-... example finished !!!
-[       OK ] UnitTest.MylibTestPrintTest (1 ms)
-[----------] 1 test from UnitTest (1 ms total)
-
-[----------] Global test environment tear-down
-[==========] 1 test from 1 test suite ran. (1 ms total)
-[  PASSED  ] 1 test.
 <end of output>
 Test time =   0.00 sec
 ----------------------------------------------------------
 Test Passed.
-"test" end time: Dec 13 13:20 CET
+"test" end time: Dec 16 12:57 CET
 "test" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-End testing: Dec 13 13:20 CET
+End testing: Dec 16 12:57 CET

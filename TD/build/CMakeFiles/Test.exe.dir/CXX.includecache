@@ -6,13 +6,13 @@
 
 #IncludeRegexTransform: 
 
-/home/chps/Bureau/poo/TD/mylib_dir/MyClass.h
+/home/chps/Bureau/TD/mylib_dir/MyClass.h
 iostream
 -
 
-/home/chps/Bureau/poo/TD/test.cpp
+/home/chps/Bureau/TD/test.cpp
 gtest/gtest.h
-/home/chps/Bureau/poo/TD/gtest/gtest.h
+/home/chps/Bureau/TD/gtest/gtest.h
 mylib_dir/MyClass.h
-/home/chps/Bureau/poo/TD/mylib_dir/MyClass.h
+/home/chps/Bureau/TD/mylib_dir/MyClass.h
 

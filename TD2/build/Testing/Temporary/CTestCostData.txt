@@ -1,3 +1,5 @@
-UnitTest.MylibTestPrintTest 18 0.000176896
-test 18 0.000161874
+Test.exe_NOT_BUILT 0 0
+test 0 0
 ---
+Test.exe_NOT_BUILT
+test

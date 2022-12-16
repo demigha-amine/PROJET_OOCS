@@ -1,16 +1,11 @@
 #include <iostream> // fichier système
-#include "PETScExampleExample.h"
-#include "HypreExample.h"
-#include "GenericExample.h"
-#include "MpiMock.h"
+#include "headers/PETScExampleExample.h"
+#include "headers/HypreExample.h"
+#include "headers/GenericExample.h"
+#include "headers/LocalLinearAlgebra.h"
+#include "headers/MpiMock.h"
 
 //#include <mpi.h>
-
-
-
-
-
-
 
 
 int main(int argc, char** argv){

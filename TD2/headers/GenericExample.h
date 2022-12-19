@@ -15,30 +15,32 @@ enum struct SolverType {Hypre, PETSc};
 LocalLinearAlgebra::ResidualNorms run(SolverType s);
 //avec Thread
 LocalLinearAlgebra::ResidualNorms run_parallel_thread(SolverType s);
-template <class T>
-void info(T a) { T.info();}
+//template <class T>
+//void info(T& a);
 };
-  
-template <typename U, typename T>
+
+//template <class T>
+//void GenericExample::info(T& a) { a::info();}
+
 
 class UniqueAPI {
 public : 
-  virtual std::unique_ptr<U> createAlgebra();
-  virtual std::unique_ptr<T> createSolver();
+  virtual UniqueAPI* createAlgebra();
+  virtual UniqueAPI* createSolver();
   virtual ~UniqueAPI() = default;
 };
 
 class HypreAPI : public UniqueAPI {
 public:
-   std::unique_ptr<U> createAlgebra() override;
-   std::unique_ptr<T> createSolver() override;    
+  UniqueAPI* createAlgebra() override;
+  UniqueAPI* createSolver() override;    
   static void info(); 
 };
 
 class PETScAPI : public UniqueAPI {
 public:
-  std::unique_ptr<U> createAlgebra() override;
-  std::unique_ptr<T> createSolver() override;    
+  UniqueAPI* createAlgebra() override;
+  UniqueAPI* createSolver() override;    
   static void info();
 };
 

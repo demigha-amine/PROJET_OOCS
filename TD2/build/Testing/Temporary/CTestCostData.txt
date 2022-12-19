@@ -1,5 +1,0 @@
-Test.exe_NOT_BUILT 0 0
-test 0 0
----
-Test.exe_NOT_BUILT
-test

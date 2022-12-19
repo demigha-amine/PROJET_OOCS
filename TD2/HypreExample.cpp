@@ -1,14 +1,14 @@
 #include "headers/HypreExample.h"
 #include "headers/AlienMock.h"
-//#include "LocalLinearAlgebra.h"
-/*
-#include <alien/hypre/backend.h>
+#include "LocalLinearAlgebra.h"
 
-#include <arccore/message_passing_mpi/StandaloneMpiMessagePassingMng.h>
+//#include <alien/hypre/backend.h>
 
-#include <alien/ref/AlienRefSemantic.h>
+//#include <arccore/message_passing_mpi/StandaloneMpiMessagePassingMng.h>
 
-*/
+//#include <alien/ref/AlienRefSemantic.h>
+
+
 
 
 

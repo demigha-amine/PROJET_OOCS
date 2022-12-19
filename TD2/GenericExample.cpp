@@ -10,7 +10,8 @@ public :
 
     void start () {fin = std::chrono::system_clock::now();}
     void stop () {fin = std::chrono::system_clock::now();}
-    void print () { std::cout << "Timer = " << fin - debut << std::endl;}
+    void print () { auto diff=fin - debut;
+                    std::cout << &diff << std::endl;}
 
 };
 
@@ -31,43 +32,33 @@ auto SolverFabric::create(GenericExample::SolverType s)
   }
 }
 
-template <typename U>
-std::unique_ptr<U> HypreAPI::createAlgebra()
+UniqueAPI* HypreAPI::createAlgebra()
 {
-  return std::make_unique<Alien::Hypre::LinearAlgebra> ();
+  std::unique_ptr<UniqueAPI> p = std::make_unique<Alien::Hypre::LinearAlgebra> ();
 }
 
-template <typename U>
-std::unique_ptr<U> createSolver()
+auto HypreAPI::createSolver()
 {
   return std::make_unique<Alien::Hypre::LinearSolver> ();
 }
 
-template <typename U>
-std::unique_ptr<U> createAlgebra()
+auto PETScAPI::createAlgebra()
 {
-  return std::make_unique<Alien::Hypre::LinearAlgebra> ();
+  //Alien::PETSc::LinearAlgebra algebra; n'existe pas dans AlienMock.h
+  return std::make_unique<Alien::SimpleCSRLinearAlgebra> ();
 }
 
-template <typename U>
-std::unique_ptr<U> createAlgebra()
-{
-  return std::make_unique<Alien::Hypre::LinearAlgebra> ();
+auto PETScAPI::createSolver()
+{ 
+  Alien::PETSc::Options options;
+  options.numIterationsMax(100);
+  options.stopCriteriaValue(1e-10);
+  options.preconditioner(Alien::PETSc::OptionTypes::Jacobi);
+  options.solver(Alien::PETSc::OptionTypes::BiCGstab /*CG*/);
+  auto solver = Alien::PETSc::LinearSolver(options);
+  return solver;
 }
 
-auto PETScAPI::createAlgebra() override 
-{
-  std::unique_ptr<Alien::ILinearAlgebra> ptr = std::make_unique<Alien::ILinearAlgebra> GenericExample::SolverType::PETSc();
-}
-auto PETScAPI::createSolver() override 
-{
-  std::unique_ptr<Alien::ILinearAlgebra> ptr = std::make_unique<Alien::ILinearAlgebra> GenericExample::SolverType::PETS();
-}
-
-void GenericExample::info(T& a)
-{
-  a.info();
-}
 void HypreAPI::info()
 {
   std::cout << "le nom de la bibliotheque utilisee est = Hypre" << std::endl;
@@ -77,13 +68,12 @@ void PETScAPI::info()
   std::cout << "le nom de la bibliotheque utilisee est = PETSc" << std::endl;
 }
 
-LocalLinearAlgebra::ResidualNorms GenericExample::run(SolverType s)
+LocalLinearAlgebra::ResidualNorms GenericExample::run(SolverType solver_type)
 {
+  /*
   Alien::Hypre::LinearAlgebra algebra;
   auto solver = Alien::Hypre::LinearSolver();
   Alien::PETSc::Options options;
-
-
 
   switch (s)
   {
@@ -96,11 +86,14 @@ LocalLinearAlgebra::ResidualNorms GenericExample::run(SolverType s)
         options.numIterationsMax(100);
         options.stopCriteriaValue(1e-10);
         options.preconditioner(Alien::PETSc::OptionTypes::Jacobi);
-        options.solver(Alien::PETSc::OptionTypes::BiCGstab /*CG*/);
-        //solver = Alien::PETSc::LinearSolver(options);
-
+        options.solver(Alien::PETSc::OptionTypes::BiCGstab );
     break;
   }
+*/
+
+  auto unique_api = SolverFabric::create(solver_type);
+  auto algebra = unique_api->createAlgebra();
+  auto solver = unique_api->createSolver();
 
   auto* pm = Arccore::MessagePassing::Mpi::StandaloneMpiMessagePassingMng::create(MPI_COMM_WORLD);
   auto* tm = Arccore::arccoreCreateDefaultTraceMng();
@@ -164,7 +157,7 @@ LocalLinearAlgebra::ResidualNorms GenericExample::run(SolverType s)
 
   //Alien::Hypre::LinearAlgebra algebra;
 
-  algebra.mult(A, xe, b);
+  algebra->mult(A, xe, b);
 
   Alien::Vector x(size, pm);
 
@@ -180,7 +173,7 @@ LocalLinearAlgebra::ResidualNorms GenericExample::run(SolverType s)
 
   //auto solver = Alien::Hypre::LinearSolver();
 
-  solver.solve(A, b, x);
+  solver->solve(A, b, x);
 
   tm->info() << "* r = Ax - b";
 
@@ -189,14 +182,14 @@ LocalLinearAlgebra::ResidualNorms GenericExample::run(SolverType s)
   {
     Alien::Vector tmp(size, pm);
     tm->info() << "t = Ax";
-    algebra.mult(A, x, tmp);
+    algebra->mult(A, x, tmp);
     tm->info() << "r = t";
-    algebra.copy(tmp, r);
+    algebra->copy(tmp, r);
     tm->info() << "r -= b";
-    algebra.axpy(-1., b, r);
+    algebra->axpy(-1., b, r);
   }
 
-  auto norm = algebra.norm2(r);
+  auto norm = algebra->norm2(r);
 
   tm->info() << " => ||r|| = " << norm;
 
@@ -204,9 +197,9 @@ LocalLinearAlgebra::ResidualNorms GenericExample::run(SolverType s)
 
   {
     tm->info() << "r = x";
-    algebra.copy(x, r);
+    algebra->copy(x, r);
     tm->info() << "r -= xe";
-    algebra.axpy(-1., xe, r);
+    algebra->axpy(-1., xe, r);
   }
 
   tm->info() << " => ||r|| = " << norm;

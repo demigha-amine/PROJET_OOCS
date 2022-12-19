@@ -36,16 +36,15 @@ std::cout << "******************************************************************
 
 GenericExample generic_example{};
 LocalLinearAlgebra::ResidualNorms A = generic_example.run(GenericExample::SolverType::Hypre); // hypre call
-LocalLinearAlgebra::ResidualNorms B = generic_example.run(GenericExample::SolverType::PETSc); // PETSc call
+//generic_example.info<HypreAPI>();
+//LocalLinearAlgebra::ResidualNorms B = generic_example.run(GenericExample::SolverType::PETSc); // PETSc call
+//generic_example.info<PETScAPI>();
 
 //affichage
 std::cout << "***************************************************************************" << std::endl;
 std::cout << "(norm_alien, norm_local) = (" << A.norm_alien << ", " << A.norm_local << ")" << std::endl;
-std::cout << "(norm_alien, norm_local) = (" << B.norm_alien << ", " << B.norm_local << ")" << std::endl;
+//std::cout << "(norm_alien, norm_local) = (" << B.norm_alien << ", " << B.norm_local << ")" << std::endl;
 std::cout << "***************************************************************************" << std::endl;
-
-generic_example.info<HypreAPI>();
-generic_example.info<PETScAPI>();
 
  MPI_Finalize();
 

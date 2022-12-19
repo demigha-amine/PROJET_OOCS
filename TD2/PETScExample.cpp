@@ -1,5 +1,5 @@
 #include "headers/PETScExampleExample.h"
-//#include "LocalLinearAlgebra.h"
+#include "LocalLinearAlgebra.h"
 
 //#include <alien/petsc/backend.h>
 //#include <alien/petsc/options.h>

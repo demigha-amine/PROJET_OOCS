@@ -1,0 +1,160 @@
+Start testing: Dec 20 02:33 CET
+----------------------------------------------------------
+1/2 Testing: UnitTest.MylibTestPrintTest
+1/2 Test: UnitTest.MylibTestPrintTest
+Command: "/home/minou/Bureau/poo/TD2/build/Test.exe" "--gtest_filter=UnitTest.MylibTestPrintTest" "--gtest_also_run_disabled_tests"
+Directory: /home/minou/Bureau/poo/TD2/build
+"UnitTest.MylibTestPrintTest" start time: Dec 20 02:33 CET
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+Note: Google Test filter = UnitTest.MylibTestPrintTest
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from UnitTest
+[ RUN      ] UnitTest.MylibTestPrintTest
+*I-Internal   Example Alien :
+*I-Internal   Use of scalar builder (RefSemantic API) for Laplacian problem
+*I-Internal    => solving linear system Ax = b
+*I-Internal    * problem size = 100
+*I-Internal    
+*I-Internal   Start example...
+*I-Internal    
+*I-Internal   Create VectorDistribution(global=100)
+*I-Internal   Create VectorDistribution(global=100)
+*I-Internal   Create MatrixDistribution(rowglobal=100,colglobal=100)
+*I-Internal   build matrix with direct matrix builder
+*I-Internal   Udpate Timestamp 0x55e5372f30a0 (0 Observers) by TimestampMng 0x55e536fbc180
+*I-Internal   * xe = 1
+*I-Internal   Create VectorDistribution(global=100)
+*I-Internal   Create Empty VectorDistribution
+*I-Internal   Initializing SimpleCSRVector 0x55e5372f4bd0
+*I-Internal   Udpate Timestamp 0x55e5372f4bd0 (0 Observers) by TimestampMng 0x55e5372f4a60
+*I-Internal   => Vector Distribution : 1d distributed, global size=100, local size=100, offset=0
+*I-Internal   * b = A * xe
+*I-Internal   Create VectorDistribution(global=100)
+*I-Internal   Converting Alien::SimpleCSRMatrix: 0x55e5372f30a0 to Hypre::Matrix 0x55e5372f4de0
+*I-Internal   Converting Alien::SimpleCSRVector: 0x55e5372f4bd0 to Hypre::Vector 0x55e5372f7390
+*I-Internal   Vector range : [0:99]
+*I-Internal   Udpate Timestamp 0x55e5372f7690 (0 Observers) by TimestampMng 0x55e5372f51a0
+*I-Internal   Create VectorDistribution(global=100)
+*I-Internal   * x = A^-1 b
+*I-Internal   Udpate Timestamp 0x55e5372f7f90 (0 Observers) by TimestampMng 0x55e536fbafa0
+free(): invalid next size (fast)
+[minou-VirtualBox:10709] *** Process received signal ***
+[minou-VirtualBox:10709] Signal: Aborted (6)
+[minou-VirtualBox:10709] Signal code:  (-6)
+[minou-VirtualBox:10709] [ 0] /lib/x86_64-linux-gnu/libc.so.6(+0x42520)[0x7fdd79567520]
+[minou-VirtualBox:10709] [ 1] /lib/x86_64-linux-gnu/libc.so.6(pthread_kill+0x12c)[0x7fdd795bba7c]
+[minou-VirtualBox:10709] [ 2] /lib/x86_64-linux-gnu/libc.so.6(raise+0x16)[0x7fdd79567476]
+[minou-VirtualBox:10709] [ 3] /lib/x86_64-linux-gnu/libc.so.6(abort+0xd3)[0x7fdd7954d7f3]
+[minou-VirtualBox:10709] [ 4] /lib/x86_64-linux-gnu/libc.so.6(+0x896f6)[0x7fdd795ae6f6]
+[minou-VirtualBox:10709] [ 5] /lib/x86_64-linux-gnu/libc.so.6(+0xa0d7c)[0x7fdd795c5d7c]
+[minou-VirtualBox:10709] [ 6] /lib/x86_64-linux-gnu/libc.so.6(+0xa2b1d)[0x7fdd795c7b1d]
+[minou-VirtualBox:10709] [ 7] /lib/x86_64-linux-gnu/libc.so.6(free+0x73)[0x7fdd795ca4d3]
+[minou-VirtualBox:10709] [ 8] /lib/x86_64-linux-gnu/libHYPRE-2.22.1.so(hypre_CSRMatrixDestroy+0x22)[0x7fdd78d4dca2]
+[minou-VirtualBox:10709] [ 9] /lib/x86_64-linux-gnu/libHYPRE-2.22.1.so(hypre_ParCSRMatrixDestroy+0x11e)[0x7fdd78d2088e]
+[minou-VirtualBox:10709] [10] /lib/x86_64-linux-gnu/libHYPRE-2.22.1.so(hypre_BoomerAMGDestroy+0x1d5)[0x7fdd78c332d5]
+[minou-VirtualBox:10709] [11] /usr/local/lib/libhypre_wrapper.so(_ZN5Alien5Hypre20InternalLinearSolver5solveERKNS0_6MatrixERKNS0_6VectorERS5_+0x14dc)[0x7fdd7a05c574]
+[minou-VirtualBox:10709] [12] /usr/local/lib/libhypre_wrapper.so(_ZN5Alien12LinearSolverINS_7BackEnd3tag5hypreEE5solveERKNS_7IMatrixERKNS_7IVectorERS8_+0x22d)[0x7fdd7a05db1b]
+[minou-VirtualBox:10709] [13] /home/minou/Bureau/poo/TD2/build/Test.exe(+0x1b68b)[0x55e535e5668b]
+[minou-VirtualBox:10709] [14] /home/minou/Bureau/poo/TD2/build/Test.exe(+0x19bf2)[0x55e535e54bf2]
+[minou-VirtualBox:10709] [15] /home/minou/Bureau/poo/TD2/build/Test.exe(+0x54c6f)[0x55e535e8fc6f]
+[minou-VirtualBox:10709] [16] /home/minou/Bureau/poo/TD2/build/Test.exe(+0x48a36)[0x55e535e83a36]
+[minou-VirtualBox:10709] [17] /home/minou/Bureau/poo/TD2/build/Test.exe(+0x48bb5)[0x55e535e83bb5]
+[minou-VirtualBox:10709] [18] /home/minou/Bureau/poo/TD2/build/Test.exe(+0x49169)[0x55e535e84169]
+[minou-VirtualBox:10709] [19] /home/minou/Bureau/poo/TD2/build/Test.exe(+0x4986f)[0x55e535e8486f]
+[minou-VirtualBox:10709] [20] /home/minou/Bureau/poo/TD2/build/Test.exe(+0x55237)[0x55e535e90237]
+[minou-VirtualBox:10709] [21] /home/minou/Bureau/poo/TD2/build/Test.exe(+0x48c7c)[0x55e535e83c7c]
+[minou-VirtualBox:10709] [22] /home/minou/Bureau/poo/TD2/build/Test.exe(+0x196a4)[0x55e535e546a4]
+[minou-VirtualBox:10709] [23] /lib/x86_64-linux-gnu/libc.so.6(+0x29d90)[0x7fdd7954ed90]
+[minou-VirtualBox:10709] [24] /lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0x80)[0x7fdd7954ee40]
+[minou-VirtualBox:10709] [25] /home/minou/Bureau/poo/TD2/build/Test.exe(+0x19ae5)[0x55e535e54ae5]
+[minou-VirtualBox:10709] *** End of error message ***
+<end of output>
+Test time =   1.36 sec
+----------------------------------------------------------
+Test Failed.
+"UnitTest.MylibTestPrintTest" end time: Dec 20 02:33 CET
+"UnitTest.MylibTestPrintTest" time elapsed: 00:00:01
+----------------------------------------------------------
+
+2/2 Testing: test
+2/2 Test: test
+Command: "/home/minou/Bureau/poo/TD2/build/Test.exe"
+Directory: /home/minou/Bureau/poo/TD2/build
+"test" start time: Dec 20 02:33 CET
+Output:
+----------------------------------------------------------
+Running main() from ./googletest/src/gtest_main.cc
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from UnitTest
+[ RUN      ] UnitTest.MylibTestPrintTest
+*I-Internal   Example Alien :
+*I-Internal   Use of scalar builder (RefSemantic API) for Laplacian problem
+*I-Internal    => solving linear system Ax = b
+*I-Internal    * problem size = 100
+*I-Internal    
+*I-Internal   Start example...
+*I-Internal    
+*I-Internal   Create VectorDistribution(global=100)
+*I-Internal   Create VectorDistribution(global=100)
+*I-Internal   Create MatrixDistribution(rowglobal=100,colglobal=100)
+*I-Internal   build matrix with direct matrix builder
+*I-Internal   Udpate Timestamp 0x55cbc9e8c1b0 (0 Observers) by TimestampMng 0x55cbc9b55010
+*I-Internal   * xe = 1
+*I-Internal   Create VectorDistribution(global=100)
+*I-Internal   Create Empty VectorDistribution
+*I-Internal   Initializing SimpleCSRVector 0x55cbc9e8dce0
+*I-Internal   Udpate Timestamp 0x55cbc9e8dce0 (0 Observers) by TimestampMng 0x55cbc9e8db70
+*I-Internal   => Vector Distribution : 1d distributed, global size=100, local size=100, offset=0
+*I-Internal   * b = A * xe
+*I-Internal   Create VectorDistribution(global=100)
+*I-Internal   Converting Alien::SimpleCSRMatrix: 0x55cbc9e8c1b0 to Hypre::Matrix 0x55cbc9e8def0
+*I-Internal   Converting Alien::SimpleCSRVector: 0x55cbc9e8dce0 to Hypre::Vector 0x55cbc9e904a0
+*I-Internal   Vector range : [0:99]
+*I-Internal   Udpate Timestamp 0x55cbc9e907a0 (0 Observers) by TimestampMng 0x55cbc9e8e2b0
+*I-Internal   Create VectorDistribution(global=100)
+*I-Internal   * x = A^-1 b
+*I-Internal   Udpate Timestamp 0x55cbc9e910a0 (0 Observers) by TimestampMng 0x55cbc9b53e30
+free(): invalid next size (fast)
+[minou-VirtualBox:10723] *** Process received signal ***
+[minou-VirtualBox:10723] Signal: Aborted (6)
+[minou-VirtualBox:10723] Signal code:  (-6)
+[minou-VirtualBox:10723] [ 0] /lib/x86_64-linux-gnu/libc.so.6(+0x42520)[0x7f27fb684520]
+[minou-VirtualBox:10723] [ 1] /lib/x86_64-linux-gnu/libc.so.6(pthread_kill+0x12c)[0x7f27fb6d8a7c]
+[minou-VirtualBox:10723] [ 2] /lib/x86_64-linux-gnu/libc.so.6(raise+0x16)[0x7f27fb684476]
+[minou-VirtualBox:10723] [ 3] /lib/x86_64-linux-gnu/libc.so.6(abort+0xd3)[0x7f27fb66a7f3]
+[minou-VirtualBox:10723] [ 4] /lib/x86_64-linux-gnu/libc.so.6(+0x896f6)[0x7f27fb6cb6f6]
+[minou-VirtualBox:10723] [ 5] /lib/x86_64-linux-gnu/libc.so.6(+0xa0d7c)[0x7f27fb6e2d7c]
+[minou-VirtualBox:10723] [ 6] /lib/x86_64-linux-gnu/libc.so.6(+0xa2b1d)[0x7f27fb6e4b1d]
+[minou-VirtualBox:10723] [ 7] /lib/x86_64-linux-gnu/libc.so.6(free+0x73)[0x7f27fb6e74d3]
+[minou-VirtualBox:10723] [ 8] /lib/x86_64-linux-gnu/libHYPRE-2.22.1.so(hypre_CSRMatrixDestroy+0x22)[0x7f27fae6aca2]
+[minou-VirtualBox:10723] [ 9] /lib/x86_64-linux-gnu/libHYPRE-2.22.1.so(hypre_ParCSRMatrixDestroy+0x11e)[0x7f27fae3d88e]
+[minou-VirtualBox:10723] [10] /lib/x86_64-linux-gnu/libHYPRE-2.22.1.so(hypre_BoomerAMGDestroy+0x1d5)[0x7f27fad502d5]
+[minou-VirtualBox:10723] [11] /usr/local/lib/libhypre_wrapper.so(_ZN5Alien5Hypre20InternalLinearSolver5solveERKNS0_6MatrixERKNS0_6VectorERS5_+0x14dc)[0x7f27fc179574]
+[minou-VirtualBox:10723] [12] /usr/local/lib/libhypre_wrapper.so(_ZN5Alien12LinearSolverINS_7BackEnd3tag5hypreEE5solveERKNS_7IMatrixERKNS_7IVectorERS8_+0x22d)[0x7f27fc17ab1b]
+[minou-VirtualBox:10723] [13] /home/minou/Bureau/poo/TD2/build/Test.exe(+0x1b68b)[0x55cbc82a668b]
+[minou-VirtualBox:10723] [14] /home/minou/Bureau/poo/TD2/build/Test.exe(+0x19bf2)[0x55cbc82a4bf2]
+[minou-VirtualBox:10723] [15] /home/minou/Bureau/poo/TD2/build/Test.exe(+0x54c6f)[0x55cbc82dfc6f]
+[minou-VirtualBox:10723] [16] /home/minou/Bureau/poo/TD2/build/Test.exe(+0x48a36)[0x55cbc82d3a36]
+[minou-VirtualBox:10723] [17] /home/minou/Bureau/poo/TD2/build/Test.exe(+0x48bb5)[0x55cbc82d3bb5]
+[minou-VirtualBox:10723] [18] /home/minou/Bureau/poo/TD2/build/Test.exe(+0x49169)[0x55cbc82d4169]
+[minou-VirtualBox:10723] [19] /home/minou/Bureau/poo/TD2/build/Test.exe(+0x4986f)[0x55cbc82d486f]
+[minou-VirtualBox:10723] [20] /home/minou/Bureau/poo/TD2/build/Test.exe(+0x55237)[0x55cbc82e0237]
+[minou-VirtualBox:10723] [21] /home/minou/Bureau/poo/TD2/build/Test.exe(+0x48c7c)[0x55cbc82d3c7c]
+[minou-VirtualBox:10723] [22] /home/minou/Bureau/poo/TD2/build/Test.exe(+0x196a4)[0x55cbc82a46a4]
+[minou-VirtualBox:10723] [23] /lib/x86_64-linux-gnu/libc.so.6(+0x29d90)[0x7f27fb66bd90]
+[minou-VirtualBox:10723] [24] /lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0x80)[0x7f27fb66be40]
+[minou-VirtualBox:10723] [25] /home/minou/Bureau/poo/TD2/build/Test.exe(+0x19ae5)[0x55cbc82a4ae5]
+[minou-VirtualBox:10723] *** End of error message ***
+<end of output>
+Test time =   1.32 sec
+----------------------------------------------------------
+Test Failed.
+"test" end time: Dec 20 02:33 CET
+"test" time elapsed: 00:00:01
+----------------------------------------------------------
+
+End testing: Dec 20 02:33 CET

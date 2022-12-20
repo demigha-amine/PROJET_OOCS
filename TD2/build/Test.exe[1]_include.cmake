@@ -1,0 +1,5 @@
+if(EXISTS "/home/minou/Bureau/poo/TD2/build/Test.exe[1]_tests.cmake")
+  include("/home/minou/Bureau/poo/TD2/build/Test.exe[1]_tests.cmake")
+else()
+  add_test(Test.exe_NOT_BUILT Test.exe_NOT_BUILT)
+endif()

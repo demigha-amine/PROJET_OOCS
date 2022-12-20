@@ -1,9 +1,9 @@
-#include <iostream>
-#include <vector>
-//#include <alien/ref/handlers/scalar/VectorReader.h>
-#include "AlienMock.h"
+//#include "AlienMock.h"
 #ifndef LOCLALLINEARALGEBRA_H
 #define LOCLALLINEARALGEBRA_H
+#include <iostream>
+#include <vector>
+#include <alien/ref/handlers/scalar/VectorReader.h>
 
 class LocalLinearAlgebra{
 public :

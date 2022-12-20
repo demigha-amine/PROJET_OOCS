@@ -1,12 +1,12 @@
 #include "gtest/gtest.h"
 #include "headers/PETScExampleExample.h"
 #include "headers/HypreExample.h"
-#include "headers/MpiMock.h"
+//#include "headers/MpiMock.h"
 #include "headers/GenericExample.h"
 #include "headers/LocalLinearAlgebra.h"
 #include <math.h>
 
-//#include <mpi.h>
+#include <mpi.h>
 
 // This macro creates a test case MylibTestPrintTest, of type UnitTest
 TEST(UnitTest, MylibTestPrintTest){ 

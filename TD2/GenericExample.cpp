@@ -32,31 +32,30 @@ auto SolverFabric::create(GenericExample::SolverType s)
   }
 }
 
-UniqueAPI* HypreAPI::createAlgebra()
+std::unique_ptr<Alien::ILinearAlgebra> HypreAPI::createAlgebra()
 {
-  std::unique_ptr<UniqueAPI> p = std::make_unique<Alien::Hypre::LinearAlgebra> ();
+  std::unique_ptr<Alien::ILinearAlgebra> p = std::make_unique<Alien::ILinearAlgebra> ();
+  return p;
 }
 
-auto HypreAPI::createSolver()
+std::unique_ptr<Alien::ILinearSolver> HypreAPI::createSolver()
 {
-  return std::make_unique<Alien::Hypre::LinearSolver> ();
+  return std::make_unique<Alien::ILinearSolver> ();
 }
 
-auto PETScAPI::createAlgebra()
+std::unique_ptr<Alien::ILinearAlgebra> PETScAPI::createAlgebra()
 {
-  //Alien::PETSc::LinearAlgebra algebra; n'existe pas dans AlienMock.h
-  return std::make_unique<Alien::SimpleCSRLinearAlgebra> ();
+  return std::make_unique<Alien::ILinearAlgebra> ();
 }
 
-auto PETScAPI::createSolver()
-{ 
+std::unique_ptr<Alien::ILinearSolver> PETScAPI::createSolver()
+{
   Alien::PETSc::Options options;
   options.numIterationsMax(100);
   options.stopCriteriaValue(1e-10);
   options.preconditioner(Alien::PETSc::OptionTypes::Jacobi);
   options.solver(Alien::PETSc::OptionTypes::BiCGstab /*CG*/);
-  auto solver = Alien::PETSc::LinearSolver(options);
-  return solver;
+  return std::make_unique<Alien::ILinearSolver> (options);
 }
 
 void HypreAPI::info()
@@ -210,7 +209,7 @@ LocalLinearAlgebra::ResidualNorms GenericExample::run(SolverType solver_type)
 // notre methode : local ***********************************************************************************/
 
 //Avec Alien
-/*
+
 Alien::LocalVectorReader L1 (x); //instance du classe d'alien pour recuperer le contenu de x
 Alien::LocalVectorReader L2 (b); //instance du classe d'alien pour recuperer le contenu de b
 
@@ -219,19 +218,20 @@ LocalLinearAlgebra::Vector b_local(L2.size()); //creation de b_local avec b.size
 
 for(int u=0; u< L1.size(); u++)
 {
-  x_local[i] = L1[i]; //copier le contenu de x dans x_local
+  x_local[u] = L1[u]; //copier le contenu de x dans x_local
 }
 
 for(int u=0; u< L2.size(); u++)
 {
-  b_local[i] = L2[i]; //copier le contenu de b dans b_local
+  b_local[u] = L2[u]; //copier le contenu de b dans b_local
 }
-*/
 
+/*
 //Avec Alien.h
 LocalLinearAlgebra::Vector x_local(size,1); //creation de x_local avec x.size
 LocalLinearAlgebra::Vector b_local(size); //creation de b_local avec b.size 
 LocalLinearAlgebra::mult(A_local, x_local, b_local);
+*/
 LocalLinearAlgebra::Vector r_local(size); //creation de r_local
 
 

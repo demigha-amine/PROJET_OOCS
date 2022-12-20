@@ -1,11 +1,8 @@
-#include <iostream> // fichier système
-#include "headers/PETScExampleExample.h"
-#include "headers/HypreExample.h"
-#include "headers/GenericExample.h"
-#include "headers/LocalLinearAlgebra.h"
-#include "headers/MpiMock.h"
 
-//#include <mpi.h>
+#include "headers/GenericExample.h"
+//#include "headers/MpiMock.h"
+
+#include <mpi.h>
 
 
 int main(int argc, char** argv){
@@ -37,7 +34,7 @@ std::cout << "******************************************************************
 GenericExample generic_example{};
 LocalLinearAlgebra::ResidualNorms A = generic_example.run(GenericExample::SolverType::Hypre); // hypre call
 //generic_example.info<HypreAPI>();
-//LocalLinearAlgebra::ResidualNorms B = generic_example.run(GenericExample::SolverType::PETSc); // PETSc call
+LocalLinearAlgebra::ResidualNorms B = generic_example.run(GenericExample::SolverType::PETSc); // PETSc call
 //generic_example.info<PETScAPI>();
 
 //affichage

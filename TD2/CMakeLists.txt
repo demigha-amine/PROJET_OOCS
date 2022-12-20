@@ -33,12 +33,16 @@ target_link_libraries(Test.exe GTest::GTest GTest::Main Threads::Threads TBB::tb
 enable_testing()
 
 #Avec Alien
-#find_package(Alien REQUIRED)
-#find_package(BLAS REQUIRED)
+find_package(Alien REQUIRED)
+find_package(BLAS REQUIRED)
+find_path(BLAS_INCLUDE_DIRS cblas.h
+  /usr/include
+  /usr/local/include
+  $ENV{BLAS_HOME}/include)
 
 
 add_test(test Test.exe)
-#target_link_libraries(Test.exe Alien::alien_semantic_ref Alien::alien_semantic_move Alien::hypre_wrapper Alien::petsc_wrapper BLAS)
-#target_link_libraries(Main.exe Alien::alien_semantic_ref Alien::alien_semantic_move Alien::hypre_wrapper Alien::petsc_wrapper BLAS)
+target_link_libraries(Test.exe Alien::alien_semantic_ref Alien::alien_semantic_move Alien::hypre_wrapper Alien::petsc_wrapper BLAS::BLAS)
+target_link_libraries(Main.exe Alien::alien_semantic_ref Alien::alien_semantic_move Alien::hypre_wrapper Alien::petsc_wrapper BLAS::BLAS)
 gtest_discover_tests(Test.exe)
 

@@ -1,6 +1,10 @@
 #include <iostream>
 #include "LocalLinearAlgebra.h"
+#include <alien/hypre/backend.h>
 
+#include <arccore/message_passing_mpi/StandaloneMpiMessagePassingMng.h>
+
+#include <alien/ref/AlienRefSemantic.h>
 
 
 

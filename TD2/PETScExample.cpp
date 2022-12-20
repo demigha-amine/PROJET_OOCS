@@ -1,13 +1,13 @@
 #include "headers/PETScExampleExample.h"
 #include "LocalLinearAlgebra.h"
 
-//#include <alien/petsc/backend.h>
-//#include <alien/petsc/options.h>
+#include <alien/petsc/backend.h>
+#include <alien/petsc/options.h>
 
-//#include <arccore/message_passing_mpi/StandaloneMpiMessagePassingMng.h>
+#include <arccore/message_passing_mpi/StandaloneMpiMessagePassingMng.h>
 
-//#include <alien/kernels/simple_csr/algebra/SimpleCSRLinearAlgebra.h>
-//#include <alien/ref/AlienRefSemantic.h>
+#include <alien/kernels/simple_csr/algebra/SimpleCSRLinearAlgebra.h>
+#include <alien/ref/AlienRefSemantic.h>
 
 //int PETScExample::run()
 //***Avec std::paire***
@@ -132,7 +132,7 @@ LocalLinearAlgebra::ResidualNorms PETScExample::run()
 // notre methode : local ***********************************************************************************/
 
 //Avec Alien
-/*
+
 Alien::LocalVectorReader L1 (x); //instance du classe d'alien pour recuperer le contenu de x
 Alien::LocalVectorReader L2 (b); //instance du classe d'alien pour recuperer le contenu de b
 
@@ -141,19 +141,20 @@ LocalLinearAlgebra::Vector b_local(L2.size()); //creation de b_local avec b.size
 
 for(int u=0; u< L1.size(); u++)
 {
-  x_local[i] = L1[i]; //copier le contenu de x dans x_local
+  x_local[u] = L1[u]; //copier le contenu de x dans x_local
 }
 
 for(int u=0; u< L2.size(); u++)
 {
-  b_local[i] = L2[i]; //copier le contenu de b dans b_local
+  b_local[u] = L2[u]; //copier le contenu de b dans b_local
 }
-*/
 
+/*
 //Avec Alien.h
 LocalLinearAlgebra::Vector x_local(size,1); //creation de x_local avec x.size
 LocalLinearAlgebra::Vector b_local(size); //creation de b_local avec b.size 
 LocalLinearAlgebra::mult(A_local, x_local, b_local);
+*/
 LocalLinearAlgebra::Vector r_local(size); //creation de r_local
 
 

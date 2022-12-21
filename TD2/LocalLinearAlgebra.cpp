@@ -1,7 +1,6 @@
 #include "headers/LocalLinearAlgebra.h"
 #include <math.h>
 #include <algorithm>
-#include <utility> //std::paire
 //#include <execution> //std::execution
 
 
@@ -98,12 +97,13 @@ double LocalLinearAlgebra::norm2(Vector a)
   return sqrt(norm);
 }
 
+// remplissage vecteur de la matrice par operateur
 double& LocalLinearAlgebra::Matrix::operator() (int row_index, int column_index)
 {
   return v[row_index * i + column_index];
 }
 
-// remplissage matrice
+// remplissage vecteur de la matrice par la methode add_value
 void LocalLinearAlgebra::Matrix::add_value(int a,int b,double c)
 {
   int index = (a)*j + b;

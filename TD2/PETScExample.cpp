@@ -1,6 +1,8 @@
 #include "headers/PETScExampleExample.h"
-#include <mpi.h>
+//Sana Alien
+//#include "headers/AlienMock.h"
 
+//Avec Aline
 #include <alien/petsc/backend.h>
 #include <alien/petsc/options.h>
 #include <arccore/message_passing_mpi/StandaloneMpiMessagePassingMng.h>
@@ -135,7 +137,7 @@ LocalLinearAlgebra::ResidualNorms PETScExample::run()
   tm->info() << " ";
   tm->info() << "... example finished !!!";
 
-// notre methode : local ***********************************************************************************/
+//************************* Notre methode : local ***************************************************/
 
 //Avec Alien
 
@@ -156,24 +158,27 @@ for(auto u=0; u< L2.size(); u++)
 }
 
 /*
-//Avec Alien.h
+//Sans Alien.h
 LocalLinearAlgebra::Vector x_local(size,1); //creation de x_local avec x.size
 LocalLinearAlgebra::Vector b_local(size); //creation de b_local avec b.size 
 LocalLinearAlgebra::mult(A_local, x_local, b_local);
 */
-LocalLinearAlgebra::Vector r_local(size); //creation de r_local
+  LocalLinearAlgebra::Vector r_local(size); //creation de r_local
+  LocalLinearAlgebra::Vector tmp_local(size); //creation vecteur tmp
 
-
-  LocalLinearAlgebra::Vector tmp_local(size);
   // "t = A_local*x_local";
   LocalLinearAlgebra::mult(A_local, x_local, tmp_local);
+
   // "r_local = t";
   LocalLinearAlgebra::copy(tmp_local, r_local);
+
   // "r_local -= b_local";
   LocalLinearAlgebra::axpy(-1., b_local, r_local);
+
   // norm_local = ||r_local||
   double norm_local = LocalLinearAlgebra::norm2(r_local);
-
+  
+  //retourner norm_alien & norm_local
   LocalLinearAlgebra::ResidualNorms R{norm,norm_local};
 
   //Avec std::paire

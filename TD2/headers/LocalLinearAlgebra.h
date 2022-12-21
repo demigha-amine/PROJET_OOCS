@@ -3,6 +3,8 @@
 #define LOCLALLINEARALGEBRA_H
 #include <iostream>
 #include <vector>
+#include <utility> //std::paire
+
 
 
 class LocalLinearAlgebra{

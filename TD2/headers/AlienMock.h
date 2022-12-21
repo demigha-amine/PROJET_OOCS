@@ -66,23 +66,34 @@ namespace Alien {
   };
   inline Vector ones(int,Arccore::MessagePassing::Mpi::ParallelMng*){ return Vector{0, nullptr}; }
 
+  struct ILinearSolver{
+      virtual void solve(Matrix const&, Vector const&, Vector&) = 0;
+  };
+
+  struct ILinearAlgebra {
+      virtual void mult(Matrix const&, Vector const&, Vector&) = 0;
+      virtual void copy(Vector const&, Vector&) = 0;
+      virtual void axpy(int,Vector const&, Vector&) = 0;
+      virtual double norm2(Vector) = 0;
+  };
+
   namespace Hypre{
-    struct LinearAlgebra{
-      void mult(Matrix const&, Vector const&, Vector&){}
-      void copy(Vector const&, Vector&){}
-      void axpy(int,Vector const&, Vector&){}
-      double norm2(Vector) {return 0.;}
+    struct LinearAlgebra : public ILinearAlgebra{
+      void mult(Matrix const&, Vector const&, Vector&) final {}
+      void copy(Vector const&, Vector&) final {}
+      void axpy(int,Vector const&, Vector&) final {}
+      double norm2(Vector) final {return 0.;}
     };
-    struct LinearSolver{
-      void solve(Matrix const&, Vector const&, Vector&){}
+    struct LinearSolver : public ILinearSolver{
+      void solve(Matrix const&, Vector const&, Vector&) final {}
     };
   }
 
-  struct SimpleCSRLinearAlgebra {
-    void mult(Matrix const&, Vector const&, Vector&){}
-    void copy(Vector const&, Vector&){}
-    void axpy(int,Vector const&, Vector&){}
-    double norm2(Vector) {return 0.;}
+  struct SimpleCSRLinearAlgebra : public ILinearAlgebra {
+    void mult(Matrix const&, Vector const&, Vector&) final {}
+    void copy(Vector const&, Vector&) final {}
+    void axpy(int,Vector const&, Vector&) final {}
+    double norm2(Vector) final {return 0.;}
 };
 
   namespace PETSc{
@@ -93,10 +104,12 @@ namespace Alien {
       void preconditioner(OptionTypes){}
       void solver(OptionTypes){}
     };
-    struct Solver{
-      void solve(Matrix const&, Vector const&, Vector&){}
+    struct LinearSolver : public ILinearSolver{
+      LinearSolver(Options) {}
+      LinearSolver() = default;
+      void solve(Matrix const&, Vector const&, Vector&) final{}
     };
-    inline Solver LinearSolver(Options) {return Solver{};}
+    //inline Solver LinearSolver(Options) {return Solver{};}
   }
 
   struct LocalVectorReader {

@@ -4,7 +4,7 @@ cmake_minimum_required(VERSION 3.10)
 project(Tutorial)
 
 # enable modern C++
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 20)
 
 # Bonus TD1
 set(CMAKE_CXX_FLAGS)
@@ -14,7 +14,7 @@ set(CMAKE_CXX_FLAGS)
 # find_library(Names MyClass)
 # target_link_libraries(Main.exe MyClass)
 
-# l'Ajoute du sous repertoire
+# l'Ajoute du sous repertoire (.h)
 include_directories(${CMAKE_SOURCE_DIR}/headers)
 
 
@@ -24,7 +24,7 @@ include_directories(${CMAKE_SOURCE_DIR}/headers)
 add_executable(Main.exe main.cpp HypreExample.cpp PETScExample.cpp LocalLinearAlgebra.cpp GenericExample.cpp)
 add_executable(Test.exe Test.cpp HypreExample.cpp PETScExample.cpp LocalLinearAlgebra.cpp GenericExample.cpp)
 
-
+#GTest
 find_package(GTest REQUIRED)
 find_package(Threads)
 find_package(TBB)

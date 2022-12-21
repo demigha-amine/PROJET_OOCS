@@ -1,7 +1,8 @@
 #include "headers/HypreExample.h"
+//Sana Alien
 //#include "headers/AlienMock.h"
 
-
+//Avec Alien
 #include <alien/hypre/backend.h>
 
 #include <arccore/message_passing_mpi/StandaloneMpiMessagePassingMng.h>
@@ -59,7 +60,7 @@ LocalLinearAlgebra::ResidualNorms HypreExample::run()
     
     for (int irow = offset; irow < offset + lsize; ++irow) {
       A_local(irow, irow) = 2.; //operateur
-      //A_local.add_value(irow,irow,2.);
+      //A_local.add_value(irow,irow,2.); //avec la methode add_value
 
       if (irow - 1 >= 0)
         A_local(irow, irow - 1) = -1.;
@@ -133,7 +134,7 @@ LocalLinearAlgebra::ResidualNorms HypreExample::run()
   tm->info() << " ";
   tm->info() << "... example finished !!!";
 
-// notre methode : local ***********************************************************************************/
+//************************* Notre methode : local ***************************************************/
 
 //Avec Alien
 
@@ -154,24 +155,27 @@ for(int u=0; u< L2.size(); u++)
 }
 
 /*
-//Avec Alien.h
+//Sans Alien
 LocalLinearAlgebra::Vector x_local(size,1); //creation de x_local avec x.size
 LocalLinearAlgebra::Vector b_local(size); //creation de b_local avec b.size 
 LocalLinearAlgebra::mult(A_local, x_local, b_local);
 */
 LocalLinearAlgebra::Vector r_local(size); //creation de r_local
+LocalLinearAlgebra::Vector tmp_local(size); //creation vecteur tmp
 
-LocalLinearAlgebra::Vector tmp_local(size);
 // "t = A_local*x_local";
 LocalLinearAlgebra::mult(A_local, x_local, tmp_local);
+
 // "r_local = t";
 LocalLinearAlgebra::copy(tmp_local, r_local);
+
 // "r_local -= b_local";
 LocalLinearAlgebra::axpy(-1., b_local, r_local);
+
 // norm_local = ||r_local||
 double norm_local = LocalLinearAlgebra::norm2(r_local);
 
-
+//retourner norm_alien & norm_local
 LocalLinearAlgebra::ResidualNorms R{norm,norm_local};
 
 

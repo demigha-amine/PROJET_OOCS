@@ -55,7 +55,7 @@ void LocalLinearAlgebra::copy(Vector const& a, Vector& b)
 }
 
 // "r_local -= b_local";
-void LocalLinearAlgebra::axpy(int val, Vector const& a , Vector& b)
+void LocalLinearAlgebra::axpy(double val, Vector const& a , Vector& b)
 {
   //std::cout <<"axpy" << std::endl;
   
@@ -98,6 +98,11 @@ double LocalLinearAlgebra::norm2(Vector a)
   return sqrt(norm);
 }
 
+double& LocalLinearAlgebra::Matrix::operator() (int row_index, int column_index)
+{
+  return v[row_index * i + column_index];
+}
+
 // remplissage matrice
 void LocalLinearAlgebra::Matrix::add_value(int a,int b,double c)
 {
@@ -114,5 +119,24 @@ LocalLinearAlgebra::Matrix(int a,int b,int c)
   j = b; 
   k = c; 
   v(a*b , c); //initialisation du vecteur de la matrice (n*n, val)
+}
+*/
+
+/*
+remplissage local a cause del'erreur double free or corruption (out)
+cette fonction fait le meme travail du la boucle de remplissage alien
+la diagonale = 2
+sous-diagonale = -1
+au-dessus diagonale = -1
+
+void  LocalLinearAlgebra::Matrix::remplir(Matrix& a, int l,int c)
+{
+  for (int ii= 0; ii < l; ++ii) {
+      a(ii,ii) = 2.; //operateur
+      
+      if (ii - 1 >= 0) a(ii, ii - 1) = -1.;
+
+      if (ii + 1 < l) a(ii, ii + 1) = -1.;
+    }
 }
 */

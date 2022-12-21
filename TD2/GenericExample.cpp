@@ -2,6 +2,7 @@
 #include <ctime>
 #include <chrono>
 
+
 class Timer{
 public :
 
@@ -28,34 +29,33 @@ auto SolverFabric::create(GenericExample::SolverType s)
         ptr = std::make_unique<PETScAPI>();
     break;
 
-  return ptr;
   }
+  return ptr;
 }
 
 std::unique_ptr<Alien::ILinearAlgebra> HypreAPI::createAlgebra()
 {
-  std::unique_ptr<Alien::ILinearAlgebra> p = std::make_unique<Alien::ILinearAlgebra> ();
-  return p;
+  return std::make_unique<Alien::Hypre::LinearAlgebra> ();
 }
 
 std::unique_ptr<Alien::ILinearSolver> HypreAPI::createSolver()
 {
-  return std::make_unique<Alien::ILinearSolver> ();
+  return std::make_unique<Alien::Hypre::LinearSolver> ();
 }
 
 std::unique_ptr<Alien::ILinearAlgebra> PETScAPI::createAlgebra()
 {
-  return std::make_unique<Alien::ILinearAlgebra> ();
+  return std::make_unique<Alien::PETSc::LinearAlgebra> ();
 }
 
 std::unique_ptr<Alien::ILinearSolver> PETScAPI::createSolver()
-{
+{ 
   Alien::PETSc::Options options;
   options.numIterationsMax(100);
   options.stopCriteriaValue(1e-10);
   options.preconditioner(Alien::PETSc::OptionTypes::Jacobi);
   options.solver(Alien::PETSc::OptionTypes::BiCGstab /*CG*/);
-  return std::make_unique<Alien::ILinearSolver> (options);
+  return std::make_unique<Alien::PETSc::LinearSolver>(options);
 }
 
 void HypreAPI::info()
@@ -65,6 +65,10 @@ void HypreAPI::info()
 void PETScAPI::info()
 {
   std::cout << "le nom de la bibliotheque utilisee est = PETSc" << std::endl;
+  std::cout << "** les options du solveur : **" << std::endl;
+  std::cout << "Type du solveur : BiCGstab " << std::endl;
+  std::cout << "Type du preconditioner : Jacobi " << std::endl;
+  std::cout << "Nbr d'iterations max : 100 " << std::endl;
 }
 
 LocalLinearAlgebra::ResidualNorms GenericExample::run(SolverType solver_type)
@@ -93,7 +97,6 @@ LocalLinearAlgebra::ResidualNorms GenericExample::run(SolverType solver_type)
   auto unique_api = SolverFabric::create(solver_type);
   auto algebra = unique_api->createAlgebra();
   auto solver = unique_api->createSolver();
-
   auto* pm = Arccore::MessagePassing::Mpi::StandaloneMpiMessagePassingMng::create(MPI_COMM_WORLD);
   auto* tm = Arccore::arccoreCreateDefaultTraceMng();
 
@@ -119,31 +122,36 @@ LocalLinearAlgebra::ResidualNorms GenericExample::run(SolverType solver_type)
   int gsize = dist.globalRowSize();
   
   LocalLinearAlgebra::Matrix A_local(size, size,0); // dimensionnement et initialisation à 0 de votre matrice
-
+  
   tm->info() << "build matrix with direct matrix builder";
   {
     Alien::DirectMatrixBuilder builder(A, Alien::DirectMatrixOptions::eResetValues);
     builder.reserve(3); // Réservation de 3 coefficients par ligne
     builder.allocate(); // Allocation de l'espace mémoire réservé
 
-
     for (int irow = offset; irow < offset + lsize; ++irow) {
       builder(irow, irow) = 2.;
-
-      A_local.add_value(irow, irow,2.);  //notre methode local
-
       if (irow - 1 >= 0)
         builder(irow, irow - 1) = -1.;
-        
-        A_local.add_value(irow, irow - 1,-1.); //remplissage matrice local
 
       if (irow + 1 < gsize)
         builder(irow, irow + 1) = -1.;
+    }
+    
+    for (int irow = offset; irow < offset + lsize; ++irow) {
+      A_local(irow, irow) = 2.; //operateur
+      //A_local.add_value(irow,irow,2.);
 
-        A_local.add_value(irow, irow + 1,-1.); //remplissage matrice local
+      if (irow - 1 >= 0)
+        A_local(irow, irow - 1) = -1.;
+        //A_local.add_value(irow,irow-1,-1.);
+
+      if (irow + 1 < gsize)
+        A_local(irow, irow + 1) = -1.;
+        //A_local.add_value(irow,irow+1,-1.);
     }
   }
-
+  
   tm->info() << "* xe = 1";
 
   Alien::Vector xe = Alien::ones(size, pm);
@@ -154,9 +162,9 @@ LocalLinearAlgebra::ResidualNorms GenericExample::run(SolverType solver_type)
 
   Alien::Vector b(size, pm);
 
-  //Alien::Hypre::LinearAlgebra algebra;
+  //algebra.mult(A, xe, b);
+  algebra->mult(A, xe, b); //algebra est un pointeur
 
-  algebra->mult(A, xe, b);
 
   Alien::Vector x(size, pm);
 
@@ -170,9 +178,10 @@ LocalLinearAlgebra::ResidualNorms GenericExample::run(SolverType solver_type)
   //
   //  auto solver = Alien::Hypre::LinearSolver (options);
 
-  //auto solver = Alien::Hypre::LinearSolver();
 
-  solver->solve(A, b, x);
+  //solver.solve(A, b, x);
+  solver->solve(A, b, x);  //solver est un pointeur
+
 
   tm->info() << "* r = Ax - b";
 
@@ -181,13 +190,20 @@ LocalLinearAlgebra::ResidualNorms GenericExample::run(SolverType solver_type)
   {
     Alien::Vector tmp(size, pm);
     tm->info() << "t = Ax";
+    //algebra.mult(A, x, tmp);
     algebra->mult(A, x, tmp);
+
     tm->info() << "r = t";
+    //algebra.copy(tmp, r);
     algebra->copy(tmp, r);
+
     tm->info() << "r -= b";
+    //algebra.axpy(-1., b, r);
     algebra->axpy(-1., b, r);
+
   }
 
+  //auto norm = algebra.norm2(r);
   auto norm = algebra->norm2(r);
 
   tm->info() << " => ||r|| = " << norm;
@@ -196,9 +212,13 @@ LocalLinearAlgebra::ResidualNorms GenericExample::run(SolverType solver_type)
 
   {
     tm->info() << "r = x";
+    //algebra.copy(x, r);
     algebra->copy(x, r);
+
     tm->info() << "r -= xe";
+    //algebra.axpy(-1., xe, r);
     algebra->axpy(-1., xe, r);
+
   }
 
   tm->info() << " => ||r|| = " << norm;
@@ -216,8 +236,8 @@ Alien::LocalVectorReader L2 (b); //instance du classe d'alien pour recuperer le 
 LocalLinearAlgebra::Vector x_local(L1.size()); //creation de x_local avec x.size
 LocalLinearAlgebra::Vector b_local(L2.size()); //creation de b_local avec b.size
 
-for(int u=0; u< L1.size(); u++)
-{
+for(auto u=0; u< L1.size(); u++)
+{ 
   x_local[u] = L1[u]; //copier le contenu de x dans x_local
 }
 
@@ -234,7 +254,6 @@ LocalLinearAlgebra::mult(A_local, x_local, b_local);
 */
 LocalLinearAlgebra::Vector r_local(size); //creation de r_local
 
-
 LocalLinearAlgebra::Vector tmp_local(size);
 // "t = A_local*x_local";
 LocalLinearAlgebra::mult(A_local, x_local, tmp_local);
@@ -245,14 +264,14 @@ LocalLinearAlgebra::axpy(-1., b_local, r_local);
 // norm_local = ||r_local||
 double norm_local = LocalLinearAlgebra::norm2(r_local);
 
-//std::cout << "Norm_local = " << norm_local << std::endl;
 
 LocalLinearAlgebra::ResidualNorms R{norm,norm_local};
 
 
+//Avec std::paire
+//std::pair<double,double> R = std::make_pair(norm,norm_local);
 
-
-  return R;
+return R;
 
 }
 

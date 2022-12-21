@@ -1,14 +1,12 @@
 #include "headers/HypreExample.h"
 //#include "headers/AlienMock.h"
-#include "LocalLinearAlgebra.h"
+
 
 #include <alien/hypre/backend.h>
 
 #include <arccore/message_passing_mpi/StandaloneMpiMessagePassingMng.h>
 
 #include <alien/ref/AlienRefSemantic.h>
-
-
 
 
 
@@ -43,31 +41,36 @@ LocalLinearAlgebra::ResidualNorms HypreExample::run()
   int gsize = dist.globalRowSize();
   
   LocalLinearAlgebra::Matrix A_local(size, size,0); // dimensionnement et initialisation à 0 de votre matrice
-
+  
   tm->info() << "build matrix with direct matrix builder";
   {
     Alien::DirectMatrixBuilder builder(A, Alien::DirectMatrixOptions::eResetValues);
     builder.reserve(3); // Réservation de 3 coefficients par ligne
     builder.allocate(); // Allocation de l'espace mémoire réservé
 
-
     for (int irow = offset; irow < offset + lsize; ++irow) {
       builder(irow, irow) = 2.;
-
-      A_local.add_value(irow, irow,2.);  //notre methode local
-
       if (irow - 1 >= 0)
         builder(irow, irow - 1) = -1.;
-        
-        A_local.add_value(irow, irow - 1,-1.); //remplissage matrice local
 
       if (irow + 1 < gsize)
         builder(irow, irow + 1) = -1.;
+    }
+    
+    for (int irow = offset; irow < offset + lsize; ++irow) {
+      A_local(irow, irow) = 2.; //operateur
+      //A_local.add_value(irow,irow,2.);
 
-        A_local.add_value(irow, irow + 1,-1.); //remplissage matrice local
+      if (irow - 1 >= 0)
+        A_local(irow, irow - 1) = -1.;
+        //A_local.add_value(irow,irow-1,-1.);
+
+      if (irow + 1 < gsize)
+        A_local(irow, irow + 1) = -1.;
+        //A_local.add_value(irow,irow+1,-1.);
     }
   }
-
+  
   tm->info() << "* xe = 1";
 
   Alien::Vector xe = Alien::ones(size, pm);
@@ -140,8 +143,8 @@ Alien::LocalVectorReader L2 (b); //instance du classe d'alien pour recuperer le 
 LocalLinearAlgebra::Vector x_local(L1.size()); //creation de x_local avec x.size
 LocalLinearAlgebra::Vector b_local(L2.size()); //creation de b_local avec b.size
 
-for(int u=0; u< L1.size(); u++)
-{
+for(auto u=0; u< L1.size(); u++)
+{ 
   x_local[u] = L1[u]; //copier le contenu de x dans x_local
 }
 
@@ -158,7 +161,6 @@ LocalLinearAlgebra::mult(A_local, x_local, b_local);
 */
 LocalLinearAlgebra::Vector r_local(size); //creation de r_local
 
-
 LocalLinearAlgebra::Vector tmp_local(size);
 // "t = A_local*x_local";
 LocalLinearAlgebra::mult(A_local, x_local, tmp_local);
@@ -169,18 +171,15 @@ LocalLinearAlgebra::axpy(-1., b_local, r_local);
 // norm_local = ||r_local||
 double norm_local = LocalLinearAlgebra::norm2(r_local);
 
-//std::cout << "Norm_local = " << norm_local << std::endl;
 
 LocalLinearAlgebra::ResidualNorms R{norm,norm_local};
+
 
 //Avec std::paire
 //std::pair<double,double> R = std::make_pair(norm,norm_local);
 
+return R;
 
-
-
-
-  return R;
 }
 
 

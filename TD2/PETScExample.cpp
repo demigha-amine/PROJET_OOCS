@@ -1,13 +1,13 @@
 #include "headers/PETScExampleExample.h"
-#include "LocalLinearAlgebra.h"
+#include <mpi.h>
 
 #include <alien/petsc/backend.h>
 #include <alien/petsc/options.h>
-
 #include <arccore/message_passing_mpi/StandaloneMpiMessagePassingMng.h>
 
 #include <alien/kernels/simple_csr/algebra/SimpleCSRLinearAlgebra.h>
 #include <alien/ref/AlienRefSemantic.h>
+#include <alien/ref/handlers/scalar/VectorReader.h>
 
 //int PETScExample::run()
 //***Avec std::paire***
@@ -40,7 +40,6 @@ LocalLinearAlgebra::ResidualNorms PETScExample::run()
 
   LocalLinearAlgebra::Matrix A_local(size, size,0); // dimensionnement et initialisation à 0 de votre matrice
 
-
   tm->info() << "offset: " << offset;
 
   tm->info() << "build matrix with direct matrix builder";
@@ -53,17 +52,24 @@ LocalLinearAlgebra::ResidualNorms PETScExample::run()
     for (int irow = offset; irow < offset + lsize; ++irow) {
       builder(irow, irow) = 2.;
 
-      A_local.add_value(irow, irow,2.);  //notre methode local
-
       if (irow - 1 >= 0)
         builder(irow, irow - 1) = -1.;
 
-        A_local.add_value(irow, irow - 1,-1.); //remplissage matrice local
-
       if (irow + 1 < gsize)
         builder(irow, irow + 1) = -1.;
+    }
+    
+    for (int irow = offset; irow < offset + lsize; ++irow) {
+      A_local(irow, irow) = 2.; //operateur
+      //A_local.add_value(irow, irow,2.);  //notre methode local
 
-        A_local.add_value(irow, irow + 1,-1.); //remplissage matrice local
+      if (irow - 1 >= 0)
+        A_local(irow, irow - 1) = -1.;
+        //A_local.add_value(irow, irow - 1,-1.); //remplissage matrice local
+
+      if (irow + 1 < gsize)
+        A_local(irow, irow + 1) = -1.;
+        //A_local.add_value(irow, irow + 1,-1.); //remplissage matrice local
     }
   }
 
@@ -139,12 +145,12 @@ Alien::LocalVectorReader L2 (b); //instance du classe d'alien pour recuperer le 
 LocalLinearAlgebra::Vector x_local(L1.size()); //creation de x_local avec x.size
 LocalLinearAlgebra::Vector b_local(L2.size()); //creation de b_local avec b.size
 
-for(int u=0; u< L1.size(); u++)
+for(auto u=0; u< L1.size(); u++)
 {
   x_local[u] = L1[u]; //copier le contenu de x dans x_local
 }
 
-for(int u=0; u< L2.size(); u++)
+for(auto u=0; u< L2.size(); u++)
 {
   b_local[u] = L2[u]; //copier le contenu de b dans b_local
 }
@@ -167,8 +173,6 @@ LocalLinearAlgebra::Vector r_local(size); //creation de r_local
   LocalLinearAlgebra::axpy(-1., b_local, r_local);
   // norm_local = ||r_local||
   double norm_local = LocalLinearAlgebra::norm2(r_local);
-
-  //std::cout << "Norm_local = " << norm_local << std::endl;
 
   LocalLinearAlgebra::ResidualNorms R{norm,norm_local};
 

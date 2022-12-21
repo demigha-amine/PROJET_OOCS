@@ -35,10 +35,7 @@ enable_testing()
 #Avec Alien
 find_package(Alien REQUIRED)
 find_package(BLAS REQUIRED)
-find_path(BLAS_INCLUDE_DIRS cblas.h
-  /usr/include
-  /usr/local/include
-  $ENV{BLAS_HOME}/include)
+
 
 
 add_test(test Test.exe)

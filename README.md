@@ -14,7 +14,7 @@ Ainsi ce projet sera compilable et testable avec les commandes (classiques) suiv
 
 Tous ces commandes sont dans le script Shell `script.sh`. Il faut juste le lancer avec la commande:
 
-     $ bash script.sh
+     $ bash TD2/script.sh
 
 
 

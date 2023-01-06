@@ -12,7 +12,7 @@ Ainsi ce projet sera compilable et testable avec les commandes (classiques) suiv
       
      $ ctest
 
-Tous ces commandes sont dans le script Shell `script.sh,` il faut just le lancer avec la commande:
+Tous ces commandes sont dans le script Shell `script.sh`. Il faut juste le lancer avec la commande:
 
      $ bash script.sh
 

@@ -12,9 +12,11 @@ Ainsi ce projet sera compilable et testable avec les commandes (classiques) suiv
       
      $ ctest
 
-Tous ces commandes sont dans le script Shell `script.sh`. Il faut juste le lancer avec la commande:
+Tous ces commandes sont dans le script Shell `script.sh`. Il faut juste le lancer avec les commandes suivantes :
 
-     $ bash TD2/script.sh
+     $ cd TD2
+     
+     $ bash script.sh
 
 
 
